@@ -1,0 +1,6 @@
+@RHsystemmanagement_HostAddress = http://localhost:5081
+
+GET {{RHsystemmanagement_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
