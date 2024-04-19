@@ -1,4 +1,4 @@
-namespace RHsystemmanagement;
+namespace api;
 
 public class WeatherForecast
 {
