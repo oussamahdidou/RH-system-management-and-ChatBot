@@ -22,7 +22,8 @@ namespace api.Migrations
                     Titre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NmbrMax = table.Column<int>(type: "int", nullable: false)
+                    NmbrMax = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,9 +49,6 @@ namespace api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumTel = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SalaireDeBase = table.Column<float>(type: "real", nullable: false),
                     IntegrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Poste = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -102,8 +100,7 @@ namespace api.Migrations
                     NumTel = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CV = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CandidatureId = table.Column<int>(type: "int", nullable: false),
-                    AnnonceId = table.Column<int>(type: "int", nullable: true)
+                    AnnonceId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -112,7 +109,8 @@ namespace api.Migrations
                         name: "FK_Candidatures_Annonces_AnnonceId",
                         column: x => x.AnnonceId,
                         principalTable: "Annonces",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,6 +247,7 @@ namespace api.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateDebut = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Datefin = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Duree = table.Column<int>(type: "int", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
@@ -315,10 +314,10 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2238872e-f70b-4570-af18-551d5a0098c4", null, "Pointeur", "POINTEUR" },
-                    { "24cbf9a9-5191-48de-91d3-3003db5873b4", null, "Employer", "EMPLOYER" },
-                    { "dc55a017-62b9-44ac-8ba6-6f25412c6b55", null, "Recruteur", "RECRUTEUR" },
-                    { "def68a9b-b419-4773-9670-1d1d47f36472", null, "Manager", "MANAGER" }
+                    { "73ec72bb-e5c5-46fd-ba57-9ad9d4d9438c", null, "Employer", "EMPLOYER" },
+                    { "78b53dc7-8e12-4e88-851a-e326ecd47fe4", null, "Recruteur", "RECRUTEUR" },
+                    { "9f0a0bc2-452a-4cd9-ba82-b0003912789c", null, "Manager", "MANAGER" },
+                    { "e3b3f5a9-4f35-4a19-832f-cf68a71b413d", null, "Pointeur", "POINTEUR" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -408,10 +407,10 @@ namespace api.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CandidatureUrgents");
+                name: "Candidatures");
 
             migrationBuilder.DropTable(
-                name: "Candidatures");
+                name: "CandidatureUrgents");
 
             migrationBuilder.DropTable(
                 name: "Conges");

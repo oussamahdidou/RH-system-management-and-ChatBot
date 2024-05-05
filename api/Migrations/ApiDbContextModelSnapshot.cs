@@ -51,25 +51,25 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "24cbf9a9-5191-48de-91d3-3003db5873b4",
+                            Id = "73ec72bb-e5c5-46fd-ba57-9ad9d4d9438c",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         },
                         new
                         {
-                            Id = "def68a9b-b419-4773-9670-1d1d47f36472",
+                            Id = "9f0a0bc2-452a-4cd9-ba82-b0003912789c",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "2238872e-f70b-4570-af18-551d5a0098c4",
+                            Id = "e3b3f5a9-4f35-4a19-832f-cf68a71b413d",
                             Name = "Pointeur",
                             NormalizedName = "POINTEUR"
                         },
                         new
                         {
-                            Id = "dc55a017-62b9-44ac-8ba6-6f25412c6b55",
+                            Id = "78b53dc7-8e12-4e88-851a-e326ecd47fe4",
                             Name = "Recruteur",
                             NormalizedName = "RECRUTEUR"
                         });
@@ -214,6 +214,9 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("Deadline")
                         .HasColumnType("datetime2");
 
@@ -261,14 +264,6 @@ namespace api.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Mail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -276,10 +271,6 @@ namespace api.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NumTel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -327,15 +318,12 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AnnonceId")
+                    b.Property<int>("AnnonceId")
                         .HasColumnType("int");
 
                     b.Property<string>("CV")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CandidatureId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Mail")
                         .IsRequired()
@@ -409,6 +397,9 @@ namespace api.Migrations
 
                     b.Property<DateTime>("Datefin")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Duree")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -559,7 +550,9 @@ namespace api.Migrations
                 {
                     b.HasOne("api.Model.Annonce", "Annonce")
                         .WithMany("Candidatures")
-                        .HasForeignKey("AnnonceId");
+                        .HasForeignKey("AnnonceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Annonce");
                 });

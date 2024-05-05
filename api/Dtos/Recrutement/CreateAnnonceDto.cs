@@ -1,20 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace api.Model
+namespace api.Dtos.Recrutement
 {
-    public class Annonce
+    public class CreateAnnonceDto
     {
-        [Key]
-        public int Id { get; set; }
         public string Titre { get; set; } = "";
         public string Description { get; set; } = "";
         public DateTime Deadline { get; set; }
         public int NmbrMax { get; set; }
-        public DateTime Date { get; set; } = DateTime.Now;
-        public List<Candidature> Candidatures { get; set; } = new List<Candidature>();
+
     }
 }

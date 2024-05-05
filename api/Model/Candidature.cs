@@ -16,7 +16,7 @@ namespace api.Model
         public string NumTel { get; set; } = "";
         public string CV { get; set; } = "";
         public string Status { get; set; } = CandidatureStatus.EnAttente;
-        public int CandidatureId { get; set; }
+        public int AnnonceId { get; set; }
         public Annonce? Annonce { get; set; }
     }
 }
