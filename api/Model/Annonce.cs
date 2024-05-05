@@ -14,6 +14,6 @@ namespace api.Model
         public string Description { get; set; } = "";
         public DateTime Deadline { get; set; }
         public int NmbrMax { get; set; }
-
+        public List<Candidature> Candidatures { get; set; } = new List<Candidature>();
     }
 }

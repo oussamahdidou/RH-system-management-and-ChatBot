@@ -13,5 +13,7 @@ namespace api.Model
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string Status { get; set; } = Abscencestatues.EnAttente;
+        public string? AppUserId { get; set; }
+        public AppUser? AppUser { get; set; }
     }
 }

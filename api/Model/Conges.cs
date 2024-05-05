@@ -15,5 +15,8 @@ namespace api.Model
         public DateTime Datefin { get; set; }
         public string Type { get; set; } = "";
         public string Status { get; set; } = CongesStatus.EnAttente;
+        public string? AppUserId { get; set; }
+        public AppUser? AppUser { get; set; }
+
     }
 }
