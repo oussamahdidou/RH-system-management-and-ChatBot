@@ -1,5 +1,9 @@
+using System.Net;
+using System.Net.Mail;
 using api.Data;
+using api.helpers;
 using api.Model;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +12,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var smtpSettings = builder.Configuration.GetSection("SmtpSettings").Get<SmtpSettings>();
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -91,6 +95,25 @@ builder.Services.AddCors(options =>
                     .AllowAnyMethod()
                     );
 });
+builder.Services.AddHangfire(configuration => configuration
+    .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+    .UseSimpleAssemblyNameTypeSerializer()
+    .UseRecommendedSerializerSettings()
+    .UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add the processing server as IHostedService
+builder.Services.AddHangfireServer();
+builder.Services
+    .AddFluentEmail(smtpSettings.User)
+    .AddRazorRenderer() // Ou utilisez .AddLiquidRenderer() pour les modèles Liquid
+    .AddSmtpSender(new SmtpClient(smtpSettings.Host)
+    {
+        Port = smtpSettings.Port,
+        Credentials = new NetworkCredential(smtpSettings.User, smtpSettings.Pass),
+        EnableSsl = true,
+        UseDefaultCredentials = false,
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -99,7 +122,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseHangfireDashboard();
+RecurringJob.AddOrUpdate("print-hello-world", () => Console.WriteLine("helloworld"), Cron.Minutely);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
