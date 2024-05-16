@@ -2,7 +2,9 @@ using System.Net;
 using System.Net.Mail;
 using api.Data;
 using api.helpers;
+using api.interfaces;
 using api.Model;
+using api.Service;
 using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -113,7 +115,7 @@ builder.Services
         EnableSsl = true,
         UseDefaultCredentials = false,
     });
-
+builder.Services.AddScoped<ITokenService, TokenService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -123,7 +125,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHangfireDashboard();
-RecurringJob.AddOrUpdate("print-hello-world", () => Console.WriteLine("helloworld"), Cron.Minutely);
+RecurringJob.AddOrUpdate("print-hello-world",
+    () => Console.WriteLine(DateTime.Now),
+    "0 0 1 * *");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
