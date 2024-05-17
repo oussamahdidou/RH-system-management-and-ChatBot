@@ -15,7 +15,7 @@ namespace api.extensions
 
             try
             {
-                // Ensure wwwroot folder exists
+
                 string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "CV");
                 if (!Directory.Exists(uploadsFolder))
                     Directory.CreateDirectory(uploadsFolder);

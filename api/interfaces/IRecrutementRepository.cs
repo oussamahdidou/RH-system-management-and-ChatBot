@@ -15,7 +15,7 @@ namespace api.interfaces
         Task<Candidature> Postuler(CreateCandidatureDto createCandidatureDto, int AnnonceId);
         Task<List<Candidature>> GetCandidaturesAsync(int Id);
         Task<Candidature> GetCandidatureById(int Id);
-        Task<Candidature> Selectionner(int Id);
+        Task<Candidature> Selectionner(int Id, DateTime dateTime);
         Task<CandidatureUrgent> Refuser(int Id);
 
     }
