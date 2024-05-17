@@ -7,8 +7,8 @@ namespace api.helpers
 {
     public static class CandidatureStatus
     {
-        public static string EnAttente { get; set; } = "EnAttente";
-        public static string Selectionner { get; set; } = "Selectionner";
+        public const string EnAttente = "EnAttente";
+        public const string Selectionner = "Selectionner";
 
 
     }

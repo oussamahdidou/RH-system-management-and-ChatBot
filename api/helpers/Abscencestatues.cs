@@ -7,8 +7,8 @@ namespace api.helpers
 {
     public static class Abscencestatues
     {
-        public static string EnAttente { get; set; }="EnAttente";
-        public static string Justifier { get; set; }="Justifier";
-        public static string NonJustifier { get; set; }="NonJustifier";
+        public const string EnAttente = "EnAttente";
+        public const string Justifier = "Justifier";
+        public const string NonJustifier = "NonJustifier";
     }
 }

@@ -12,8 +12,8 @@ namespace api.interfaces
         Task<Annonce> CreateAnnonceAsync(CreateAnnonceDto createAnnonceDto);
         Task<List<Annonce>> GetAnnoncesAsync();
         Task<Annonce> GetAnnonceByIdAsync(int Id);
-        Task<Candidature> Postuler(CreateCandidatureDto createCandidatureDto);
-        Task<List<Candidature>> GetCandidaturesAsync();
+        Task<Candidature> Postuler(CreateCandidatureDto createCandidatureDto, int AnnonceId);
+        Task<List<Candidature>> GetCandidaturesAsync(int Id);
         Task<Candidature> GetCandidatureById(int Id);
         Task<Candidature> Selectionner(int Id);
         Task<CandidatureUrgent> Refuser(int Id);

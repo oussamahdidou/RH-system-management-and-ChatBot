@@ -7,9 +7,9 @@ namespace api.helpers
 {
     public static class CongesStatus
     {
-        public static string EnAttente { get; set; } = "EnAttente";
-        public static string Approuver { get; set; } = "Approuver";
-        public static string Refuser { get; set; } = "refuser";
+        public const string EnAttente = "EnAttente";
+        public const string Approuver = "Approuver";
+        public const string Refuser = "refuser";
 
     }
 }

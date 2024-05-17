@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Mail;
 using api.Data;
+using api.extensions;
 using api.helpers;
 using api.interfaces;
 using api.Model;
@@ -117,7 +118,7 @@ builder.Services
     });
 builder.Services.AddScoped<ITokenService, TokenService>();
 var app = builder.Build();
-
+app.UseStaticFiles();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -126,7 +127,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHangfireDashboard();
 RecurringJob.AddOrUpdate("print-hello-world",
-    () => Console.WriteLine(DateTime.Now),
+    () => Console.WriteLine(DateTimeExtensions.GetPreviousMonthYear()),
     "0 0 1 * *");
 app.UseHttpsRedirection();
 
