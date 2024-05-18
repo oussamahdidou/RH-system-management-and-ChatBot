@@ -130,7 +130,7 @@ RecurringJob.AddOrUpdate("print-hello-world",
     () => Console.WriteLine(DateTimeExtensions.GetPreviousMonthYear()),
     "0 0 1 * *");
 app.UseHttpsRedirection();
-
+app.UseCors("AllowOrigin");
 app.UseAuthorization();
 
 app.MapControllers();

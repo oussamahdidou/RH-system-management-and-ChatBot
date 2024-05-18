@@ -1,14 +1,16 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import * as d3 from 'd3';
+import { SidenavComponent } from "./components/sidenav/sidenav.component";
 
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+   
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [RouterOutlet, SidenavComponent]
 })
 export class AppComponent implements OnInit {
   constructor(private elementRef: ElementRef) {}

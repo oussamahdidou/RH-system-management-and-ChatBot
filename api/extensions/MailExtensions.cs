@@ -75,7 +75,7 @@ Cordialement,
             return $@"
 Bonjour {Username},
 
-Nous vous remercions d'avoir postulé à [nom du poste] au sein de notre entreprise. Après examen attentif de votre candidature, nous regrettons de vous informer que nous n'avons pas retenu votre profil pour ce poste.
+Nous vous remercions d'avoir postulé au sein de notre entreprise. Après examen attentif de votre candidature, nous regrettons de vous informer que nous n'avons pas retenu votre profil pour ce poste.
 
 Cependant, nous conservons vos coordonnées et ne manquerons pas de vous recontacter en cas de besoin urgent correspondant à vos compétences.
 
