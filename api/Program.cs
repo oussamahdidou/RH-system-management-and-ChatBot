@@ -119,6 +119,8 @@ builder.Services
     });
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IPaiementRepository, PaiementRepository>();
+builder.Services.AddScoped<IPerformanceRepository, PerformanceRepository>();
+builder.Services.AddScoped<IRecrutementRepository, RecrutementRepository>();
 var app = builder.Build();
 app.UseStaticFiles();
 // Configure the HTTP request pipeline.

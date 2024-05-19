@@ -15,12 +15,15 @@
     ></label>
   </div>
   <nav class="d-flex py-5 flex-column">
-    <span class="mx-auto w-100 py-3 ps-3">
+    <span routerLink="/employers" class="mx-auto nav-items w-100 py-3 ps-3">
       <i style="font-size: 35px" class="bi bi-people-fill"></i>
 
       @if (!isOpen) {<b> Employers</b>}
     </span>
-    <span class="mx-auto w-100 py-3 ps-3">
+    <span
+      class="mx-auto nav-items w-100 py-3 ps-3"
+      routerLink="/hiring/annonces"
+    >
       <svg
         fill="currentColor"
         version="1.1"
@@ -79,7 +82,7 @@
       </svg>
       @if (!isOpen) {<b> Hiring</b>}
     </span>
-    <span class="mx-auto w-100 py-3 ps-3">
+    <span class="mx-auto nav-items w-100 py-3 ps-3">
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +126,7 @@ l104 -104 107 104 c114 111 141 124 181 88 38 -34 24 -62 -89 -175 l-108 -108
 
       @if (!isOpen) {<b> Conges</b>}
     </span>
-    <span class="mx-auto w-100 py-3 ps-3">
+    <span class="mx-auto nav-items w-100 py-3 ps-3">
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
