@@ -9,7 +9,7 @@ namespace api.Model
     public class AppUser : IdentityUser
     {
 
-        public float SalaireDeBase { get; set; }
+        public double SalaireDeBase { get; set; }
         public DateTime IntegrationDate { get; set; }
         public string? Poste { get; set; }
         public List<Heuresupplimentaires> Heuresupplimentaires { get; set; } = new List<Heuresupplimentaires>();

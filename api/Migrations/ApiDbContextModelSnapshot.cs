@@ -51,25 +51,25 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "73ec72bb-e5c5-46fd-ba57-9ad9d4d9438c",
+                            Id = "158f495d-b468-4a1b-98a0-39ebef1436e5",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         },
                         new
                         {
-                            Id = "9f0a0bc2-452a-4cd9-ba82-b0003912789c",
+                            Id = "0ed400ac-7f1a-4bca-8299-248b90e28412",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "e3b3f5a9-4f35-4a19-832f-cf68a71b413d",
+                            Id = "fe6e7be3-c09f-4926-b4e9-d8633c584822",
                             Name = "Pointeur",
                             NormalizedName = "POINTEUR"
                         },
                         new
                         {
-                            Id = "78b53dc7-8e12-4e88-851a-e326ecd47fe4",
+                            Id = "db42ebc6-dd9b-4dfb-92df-e9f0c79f62e4",
                             Name = "Recruteur",
                             NormalizedName = "RECRUTEUR"
                         });
@@ -284,8 +284,8 @@ namespace api.Migrations
                     b.Property<string>("Poste")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("SalaireDeBase")
-                        .HasColumnType("real");
+                    b.Property<double>("SalaireDeBase")
+                        .HasColumnType("float");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -445,8 +445,8 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<float>("AMO")
-                        .HasColumnType("real");
+                    b.Property<double>("AMO")
+                        .HasColumnType("float");
 
                     b.Property<int>("Annee")
                         .HasColumnType("int");
@@ -454,15 +454,15 @@ namespace api.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<float>("CNSS")
-                        .HasColumnType("real");
+                    b.Property<double>("CNSS")
+                        .HasColumnType("float");
 
                     b.Property<string>("FicheDePaie")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("ImpotSurSalaire")
-                        .HasColumnType("real");
+                    b.Property<double>("ImpotSurSalaire")
+                        .HasColumnType("float");
 
                     b.Property<int>("Mois")
                         .HasColumnType("int");
@@ -473,11 +473,11 @@ namespace api.Migrations
                     b.Property<int>("Nmbrheursupplimentaires")
                         .HasColumnType("int");
 
-                    b.Property<float>("Prime")
-                        .HasColumnType("real");
+                    b.Property<double>("Prime")
+                        .HasColumnType("float");
 
-                    b.Property<float>("SalaireDeBase")
-                        .HasColumnType("real");
+                    b.Property<double>("SalaireDeBase")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

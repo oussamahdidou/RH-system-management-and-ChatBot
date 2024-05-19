@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulletin de Paie</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2>Nom de l'entreprise</h2>
+      <p>Date de paie: {{DATE}}</p>
+      <p>Nom de l'employé: {{NOM}}</p>
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Variable de paie</th>
+            <th>Taux</th>
+            <th>Nmbre de Jour/heures</th>
+            <th>Montant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Salaire de Base</td>
+            <td>{{SALAIRE_DE_BASE_H}}</td>
+            <td>176</td>
+            <td>{{SALAIRE_DE_BASE}}</td>
+          </tr>
+          <tr>
+            <td>Heures supplémentaires</td>
+            <td>{{MONTANT_H_M}}/heure</td>
+            <td>{{HEURES_SUPPLIMENTAIRES_NMBRE}}</td>
+            <td>{{HEURES_SUPPLIMENTAIRES_MONTANT}}</td>
+          </tr>
+          <tr>
+            <td>Absences non rémunérées</td>
+            <td>{{SALAIRE_DE_BASE_H}}</td>
+            <td>{{NMBRE_ABSCENCE}}</td>
+            <td>{{REDUCTION_ABSCENCE}}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Salaire Brut</td>
+            <td>{{SALAIRE_BRUT}}</td>
+          </tr>
+          <tr>
+            <td>Primes</td>
+            <td>{{TAUX_PRIMES}}</td>
+            <td>-</td>
+            <td>{{MONTANT_PRIMES}}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Salaire Brut Imposable</td>
+            <td>{{SALAIRE_BRUT_IMPOSABLE}}</td>
+          </tr>
+          <tr>
+            <td>Impôts</td>
+            <td>{{TAUX_IMPOT}}</td>
+            <td>-</td>
+            <td>{{MONTANT_IMPOT}}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Salaire Net Imposable</td>
+            <td>{{SALAIRE_NET_IMPOSABLE}}</td>
+          </tr>
+          <tr>
+            <td>Cotisations d'AMO</td>
+            <td>0.0448</td>
+            <td>-</td>
+            <td>{{MONTANT_AMO}}</td>
+          </tr>
+          <tr>
+            <td>Cotisations CNSS</td>
+            <td>0.0226</td>
+            <td>-</td>
+            <td>{{MONTANT_CNSS}}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Salaire Net</td>
+            <td>{{SALAIRE_NET}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

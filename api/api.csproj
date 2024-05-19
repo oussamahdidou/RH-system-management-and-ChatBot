@@ -15,6 +15,8 @@
     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.12" />
     <PackageReference Include="Hangfire.Core" Version="1.8.12" />
     <PackageReference Include="Hangfire.SqlServer" Version="1.8.12" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.4" />
+    <PackageReference Include="itext7.pdfhtml" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />

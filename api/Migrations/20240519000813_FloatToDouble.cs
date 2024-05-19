@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FloatToDouble : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -49,7 +49,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SalaireDeBase = table.Column<float>(type: "real", nullable: false),
+                    SalaireDeBase = table.Column<double>(type: "float", nullable: false),
                     IntegrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Poste = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -289,13 +289,13 @@ namespace api.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Annee = table.Column<int>(type: "int", nullable: false),
                     Mois = table.Column<int>(type: "int", nullable: false),
-                    SalaireDeBase = table.Column<float>(type: "real", nullable: false),
-                    Prime = table.Column<float>(type: "real", nullable: false),
+                    SalaireDeBase = table.Column<double>(type: "float", nullable: false),
+                    Prime = table.Column<double>(type: "float", nullable: false),
                     Nmbrheursupplimentaires = table.Column<int>(type: "int", nullable: false),
                     NmbrAbscences = table.Column<int>(type: "int", nullable: false),
-                    ImpotSurSalaire = table.Column<float>(type: "real", nullable: false),
-                    CNSS = table.Column<float>(type: "real", nullable: false),
-                    AMO = table.Column<float>(type: "real", nullable: false),
+                    ImpotSurSalaire = table.Column<double>(type: "float", nullable: false),
+                    CNSS = table.Column<double>(type: "float", nullable: false),
+                    AMO = table.Column<double>(type: "float", nullable: false),
                     FicheDePaie = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -314,10 +314,10 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "73ec72bb-e5c5-46fd-ba57-9ad9d4d9438c", null, "Employer", "EMPLOYER" },
-                    { "78b53dc7-8e12-4e88-851a-e326ecd47fe4", null, "Recruteur", "RECRUTEUR" },
-                    { "9f0a0bc2-452a-4cd9-ba82-b0003912789c", null, "Manager", "MANAGER" },
-                    { "e3b3f5a9-4f35-4a19-832f-cf68a71b413d", null, "Pointeur", "POINTEUR" }
+                    { "0ed400ac-7f1a-4bca-8299-248b90e28412", null, "Manager", "MANAGER" },
+                    { "158f495d-b468-4a1b-98a0-39ebef1436e5", null, "Employer", "EMPLOYER" },
+                    { "db42ebc6-dd9b-4dfb-92df-e9f0c79f62e4", null, "Recruteur", "RECRUTEUR" },
+                    { "fe6e7be3-c09f-4926-b4e9-d8633c584822", null, "Pointeur", "POINTEUR" }
                 });
 
             migrationBuilder.CreateIndex(

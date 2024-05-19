@@ -5,6 +5,7 @@ using api.extensions;
 using api.helpers;
 using api.interfaces;
 using api.Model;
+using api.Repository;
 using api.Service;
 using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -117,6 +118,7 @@ builder.Services
         UseDefaultCredentials = false,
     });
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IPaiementRepository, PaiementRepository>();
 var app = builder.Build();
 app.UseStaticFiles();
 // Configure the HTTP request pipeline.
@@ -126,8 +128,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHangfireDashboard();
-RecurringJob.AddOrUpdate("print-hello-world",
-    () => Console.WriteLine(DateTimeExtensions.GetPreviousMonthYear()),
+RecurringJob.AddOrUpdate<IPaiementRepository>("livraison-des-fiches-de-paie",
+    x => x.CreatePaiements(),
     "0 0 1 * *");
 app.UseHttpsRedirection();
 app.UseCors("AllowOrigin");

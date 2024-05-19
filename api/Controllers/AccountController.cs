@@ -51,7 +51,7 @@ namespace api.Controller
             });
         }
         [HttpPost("Register/User")]
-        public async Task<IActionResult> RegisterUser([FromForm] RegistrationDto model)
+        public async Task<IActionResult> RegisterUser([FromBody] RegistrationDto model)
         {
             try
             {
