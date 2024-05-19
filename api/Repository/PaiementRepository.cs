@@ -37,7 +37,7 @@ namespace api.Repository
             foreach (var appuser in appUsers)
             {
                 (int year, int month) date = DateTimeExtensions.GetPreviousMonthYear();
-                int NmbreAbscences = appuser.Abscences.Where(x => x.Date.Year == date.year && x.Date.Month == date.month).Count();
+                int NmbreAbscences = appuser.Abscences.Where(x => x.Date.Year == date.year && x.Date.Month == date.month && x.Status == Abscencestatues.Justifier).Count();
                 int Nmbreheuressupplimentaires = appuser.Heuresupplimentaires.Where(x => x.DateTime.Year == date.year && x.DateTime.Month == date.month).Count();
                 double SalaireDeBasePerHour = appuser.SalaireDeBase;
                 double SalaireDeBase = appuser.SalaireDeBase * 176;
@@ -92,7 +92,7 @@ namespace api.Repository
                     TauxImpot = 0.38;
                 }
                 double SalaireNetImposable = SalaireBrutImposable * (1 - TauxImpot);
-                double SalaireNet = SalaireNetImposable * 0.0674;
+                double SalaireNet = SalaireNetImposable * (1 - 0.0674);
                 Paiementvariable paiementvariable = new Paiementvariable()
                 {
                     Name = appuser.UserName,
@@ -119,7 +119,7 @@ namespace api.Repository
                 SendResponse response = await fluentEmail
                            .To(appuser.Email)
                            .Subject("Fiche de paie " + date.year + "_" + date.month)
-
+                           .Body($@"Monsiur {appuser.UserName} voici votre fiche de paie du mois {date.year} / {date.month}")
                            .Attach(new Attachment
                            {
                                Data = File.OpenRead(file.filepath),

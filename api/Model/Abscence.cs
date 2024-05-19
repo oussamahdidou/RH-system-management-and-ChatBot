@@ -12,7 +12,7 @@ namespace api.Model
         [Key]
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public string Status { get; set; } = Abscencestatues.EnAttente;
+        public string Status { get; set; } = Abscencestatues.NonJustifier;
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
     }
