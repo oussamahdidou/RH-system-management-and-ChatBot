@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.helpers;
 
 namespace api.extensions
 {
@@ -46,6 +47,45 @@ namespace api.extensions
 
             return years;
         }
-
+        public static int DureeConges(this string typeconges)
+        {
+            if (typeconges == CongesTypes.CongesAnnuel)
+            {
+                return 0;
+            }
+            else if (typeconges == CongesTypes.CongeNaissance)
+            {
+                return 3;
+            }
+            else if (typeconges == CongesTypes.MariageSalarie)
+            {
+                return 4;
+            }
+            else if (typeconges == CongesTypes.MariageEnfant)
+            {
+                return 2;
+            }
+            else if (typeconges == CongesTypes.Chirurgie)
+            {
+                return 2;
+            }
+            else if (typeconges == CongesTypes.DecesProche)
+            {
+                return 3;
+            }
+            else if (typeconges == CongesTypes.DecesLoin)
+            {
+                return 2;
+            }
+            else if (typeconges == CongesTypes.Examen)
+            {
+                return 0;
+            }
+            else if (typeconges == CongesTypes.Maternite)
+            {
+                return 17 * 7;
+            }
+            return 0;
+        }
     }
 }

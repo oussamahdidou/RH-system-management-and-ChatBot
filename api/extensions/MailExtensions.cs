@@ -87,5 +87,21 @@ Cordialement,
 
 ";
         }
+        public static async Task<string> RefusCongesMail(this string Username, DateTime datedebut, DateTime datefin)
+        {
+            return @$"Bonjour {Username},
+
+Je vous remercie pour votre demande de congé du{datedebut.Date} au{datefin.Date}.Après avoir examiné votre demande et pris en compte les besoins opérationnels actuels de l'entreprise, je suis au regret de vous informer que je ne peux pas approuver votre congé à cette période.";
+        }
+        public static async Task<string> ApprouverCongesMail(this string Username, DateTime datedebut, DateTime datefin)
+        {
+            return @$"Bonjour {Username},
+
+Je vous écris pour confirmer que votre demande de congé du {datedebut.Date} au {datefin.Date} a été approuvée. Nous avons pris les dispositions nécessaires pour assurer la continuité des activités pendant votre absence.
+
+Je vous souhaite de profiter pleinement de cette période de repos. N'hésitez pas à nous contacter si vous avez besoin de quoi que ce soit avant votre départ.";
+        }
+
+
     }
 }
