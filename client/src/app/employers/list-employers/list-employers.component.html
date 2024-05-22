@@ -1,1 +1,28 @@
-<p>list-employers works!</p>
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  class="table table-striped table-bordered"
+>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of items; track $index) {
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.Date }}</td>
+      <td>
+        @if (item.status === 'NonJustifier') {
+        <button class="btn btn-primary" (click)="justify()">Justify</button>
+        } @else if (item.status !== 'NonJustifier') {
+        <i class="fas fa-check-circle text-success"></i>
+        }
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
