@@ -1,28 +1,37 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AnnonceComponent } from './annonce/annonce.component';
-import { ListAnnonceComponent } from './list-annonce/list-annonce.component';
-import { CandidatureComponent } from './candidature/candidature.component';
-import { CandidatureUrgentComponent } from './candidature-urgent/candidature-urgent.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ListAnnonceComponent } from './list-annonce/list-annonce.component';
+import { AnnonceComponent } from './annonce/annonce.component';
+import { CandidatureComponent } from './candidature/candidature.component';
+import { PostuleComponent } from './postule/postule.component';
+
 const routes: Routes = [
   {
     path: '',
     children: [
 
+
       { path: 'annonces', component: ListAnnonceComponent },
-      { path: 'annonces/:id', component: AnnonceComponent },
+      { path: 'annonce/:id', component: AnnonceComponent },
       { path: 'candidature/:id', component: CandidatureComponent },
-      { path: 'candidatureurgent/:id', component: CandidatureUrgentComponent }
+      { path: 'postule/:id', component: PostuleComponent }
     ],
   },
 ];
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    
+          ListAnnonceComponent,
+          AnnonceComponent,
+          CandidatureComponent,
+          PostuleComponent
+  ],
   imports: [
-    CommonModule,
+     CommonModule,
+
     RouterModule.forChild(routes),
   ]
 })

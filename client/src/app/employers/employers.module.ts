@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ListEmployersComponent } from './list-employers/list-employers.component';
-import { DetailEmployerComponent } from './detail-employer/detail-employer.component';
+import { ListEmployerComponent } from './list-employer/list-employer.component';
+import { EmployerComponent } from './employer/employer.component';
 const routes: Routes = [
   {
     path: '',
     children: [
 
-      { path: '', component: ListEmployersComponent },
-      { path: ':id', component: DetailEmployerComponent },
+
+      { path: '', component: ListEmployerComponent },
+      { path: ':id', component: EmployerComponent },
 
     ],
   },
@@ -17,11 +18,10 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ListEmployerComponent,EmployerComponent],
   imports: [
     CommonModule,
         RouterModule.forChild(routes),
-
   ]
 })
 export class EmployersModule { }
