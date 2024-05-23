@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './sidenav.component.css'
 })
 export class SidenavComponent {
-  isOpen = true;
+  isOpen = false;
 ToggleOpen() {
 this.isOpen= !this.isOpen;
 }
