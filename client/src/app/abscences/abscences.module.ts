@@ -3,14 +3,20 @@ import { CommonModule } from '@angular/common';
 import { ListAbscenceComponent } from './list-abscence/list-abscence.component';
 import { ListCongesComponent } from './list-conges/list-conges.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 const routes: Routes = [
   {
     path: '',
     children: [
 
 
-      { path: '', component: ListAbscenceComponent },
-      { path: ':id', component: ListCongesComponent },
+      { path: 'abscences', component: ListAbscenceComponent },
+      { path: 'conges', component: ListCongesComponent },
 
     ],
   },
@@ -26,7 +32,12 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-
+        MatTableModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class AbscencesModule { }

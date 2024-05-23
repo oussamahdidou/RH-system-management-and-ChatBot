@@ -5,6 +5,12 @@ import { ListAnnonceComponent } from './list-annonce/list-annonce.component';
 import { AnnonceComponent } from './annonce/annonce.component';
 import { CandidatureComponent } from './candidature/candidature.component';
 import { PostuleComponent } from './postule/postule.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 const routes: Routes = [
   {
@@ -22,16 +28,21 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [
-    
-          ListAnnonceComponent,
-          AnnonceComponent,
-          CandidatureComponent,
-          PostuleComponent
+  declarations: [    
+ListAnnonceComponent,
+AnnonceComponent,
+CandidatureComponent,
+PostuleComponent,
+
   ],
   imports: [
      CommonModule,
-
+    MatTableModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
     RouterModule.forChild(routes),
   ]
 })

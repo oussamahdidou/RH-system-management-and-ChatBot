@@ -4,13 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListEmployerComponent } from './list-employer/list-employer.component';
 import { EmployerComponent } from './employer/employer.component';
 import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+
 const routes: Routes = [
   {
     path: '',
     children: [
 
 
-      { path: '', component: ListEmployerComponent },
+      { path: 'table', component: ListEmployerComponent },
       { path: ':id', component: EmployerComponent },
 
     ],
@@ -22,8 +28,15 @@ const routes: Routes = [
   declarations: [ListEmployerComponent,EmployerComponent],
   imports: [
     CommonModule,
+    
+    MatTableModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
     FormsModule,
         RouterModule.forChild(routes),
+    
         
   ]
 })

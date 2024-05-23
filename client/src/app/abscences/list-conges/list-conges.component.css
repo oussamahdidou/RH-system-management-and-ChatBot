@@ -1,0 +1,17 @@
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.status-icon {
+    display: flex;
+    align-items: center;
+}
+
+.status-icon mat-icon {
+    margin-right: 5px;
+}
