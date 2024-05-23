@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ListEmployerComponent } from './list-employer/list-employer.component';
 import { EmployerComponent } from './employer/employer.component';
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: '',
@@ -21,7 +22,9 @@ const routes: Routes = [
   declarations: [ListEmployerComponent,EmployerComponent],
   imports: [
     CommonModule,
+    FormsModule,
         RouterModule.forChild(routes),
+        
   ]
 })
 export class EmployersModule { }
