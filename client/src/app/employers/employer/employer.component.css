@@ -1,5 +1,18 @@
-.chart{
-
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
-           
-} 
+.chart {
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  width: 50%;
+  position: relative;
+}
+.profile-container {
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+  background-color: white;
+}
+.profile-page {
+  background-color: aliceblue;
+  height: 100%;
+}
+.profile-img {
+  border-radius: 50%;
+  overflow: hidden;
+}

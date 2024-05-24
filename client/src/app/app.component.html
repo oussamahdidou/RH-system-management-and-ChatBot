@@ -1,4 +1,4 @@
-<app-sidebar></app-sidebar>
-<div class="content">
+<app-sidebar (myBoolChange)="onMyBoolChange($event)"></app-sidebar>
+<div [class.content]="!receivedBool" [class.content-active]="receivedBool">
   <router-outlet></router-outlet>
 </div>

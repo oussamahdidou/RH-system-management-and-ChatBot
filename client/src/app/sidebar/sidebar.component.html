@@ -1,11 +1,11 @@
-<aside [ngClass]="{ 'aside-nav': isOpen }" class="d-flex py-4 flex-column">
+<aside [ngClass]="{ 'aside-nav': myBool }" class="d-flex py-4 flex-column">
   <div class="mx-auto my-3">
     <input
-      (click)="ToggleOpen()"
+      (click)="toggleBool()"
       class="label-check"
       id="label-check"
       type="checkbox"
-      [(ngModel)]="isOpen"
+      [(ngModel)]="myBool"
     />
     <label for="label-check" class="hamburger-label">
       <div class="line1"></div>
@@ -21,7 +21,7 @@
     >
       <i style="font-size: 35px" class="bi bi-people-fill"></i>
 
-      @if (!isOpen) {<b> Employers</b>}
+      @if (!myBool) {<b> Employers</b>}
     </span>
     <span
       class="mx-auto nav-items w-100 py-3 ps-3"
@@ -83,7 +83,7 @@
           </g>
         </g>
       </svg>
-      @if (!isOpen) {<b> Hiring</b>}
+      @if (!myBool) {<b> Hiring</b>}
     </span>
     <span
       routerLink="/abscence/conges"
@@ -130,7 +130,7 @@ l104 -104 107 104 c114 111 141 124 181 88 38 -34 24 -62 -89 -175 l-108 -108
         </g>
       </svg>
 
-      @if (!isOpen) {<b> Conges</b>}
+      @if (!myBool) {<b> Conges</b>}
     </span>
     <span
       routerLink="/abscence/abscences"
@@ -189,7 +189,7 @@ c12 -32 90 -469 90 -509 0 -27 -11 -43 -60 -91 -38 -37 -68 -58 -83 -58 -29 0
           />
         </g>
       </svg>
-      @if (!isOpen) {<b> Pointage</b>}
+      @if (!myBool) {<b> Pointage</b>}
     </span>
   </nav>
 </aside>

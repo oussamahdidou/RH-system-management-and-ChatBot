@@ -1,26 +1,86 @@
-<div class="container-fluid d-flex justify-content-around charts-container">
-  <div class="chart py-3 px-2">
-    <canvas
-      baseChart
-      width="475"
-      height="300"
-      [type]="'line'"
-      [data]="lineChartData"
-      [options]="lineChartOptions"
-      [legend]="lineChartLegend"
-    >
-    </canvas>
+<div class="profile-page">
+  <div class="profile-section container-fluid py-3 px-4">
+    <div class="profile-container row py-2 px-4">
+      <div
+        class="col-lg-4 d-flex flex-column justify-content-center align-items-center gap-2"
+      >
+        <div class="profile-img w-50">
+          <img
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+        <!-- <div class="button w-100 mx-auto px-5">
+          <button mat-raised-button color="warn" class="w-100 mx-auto">
+            signal abscence
+          </button>
+        </div>
+
+        <div class="button w-100 mx-auto px-5">
+          <button mat-raised-button color="primary" class="w-100 mx-auto">
+            signal surtemps
+          </button>
+                  <div class="button w-100 mx-auto px-5">
+          <button mat-raised-button class="w-100 mx-auto" color="warn">
+            Delete Account
+          </button>
+        </div>
+        </div> -->
+
+        <div class="button w-100 mx-auto px-5">
+          <input
+            type="file"
+            #fileInput
+            hidden
+            (change)="onFileSelected($event)"
+          />
+          <button
+            mat-raised-button
+            color="primary"
+            class="w-100 mx-auto"
+            (click)="fileInput.click()"
+          >
+            <mat-icon>image</mat-icon> Change image
+          </button>
+        </div>
+        <div class="button w-100 mx-auto px-5">
+          <button mat-raised-button color="accent" class="w-100 mx-auto">
+            <mat-icon>calendar_today</mat-icon> Demande Conges
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-8 pt-5">
+        <h3 class="">Employer name</h3>
+        <p class="text-secondary">Poste : Develloper junior</p>
+        <p class="text-secondary">mail : example&#64;example.com</p>
+        <p class="text-secondary">phone : 06 51 75 54 23</p>
+      </div>
+    </div>
   </div>
-  <div class="chart py-3 px-2">
-    <canvas
-      baseChart
-      width="475"
-      height="300"
-      [type]="'line'"
-      [data]="AbscencelineChartData"
-      [options]="AbscencelineChartOptions"
-      [legend]="AbscencelineChartLegend"
-    >
-    </canvas>
+
+  <div
+    class="container-fluid d-flex charts-container justify-content-center pb-4"
+  >
+    <div class="chart py-3 px-2 mx-2">
+      <canvas
+        baseChart
+        [type]="'line'"
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend"
+      >
+      </canvas>
+    </div>
+    <div class="chart py-3 px-2 mx-2">
+      <canvas
+        baseChart
+        [type]="'line'"
+        [data]="AbscencelineChartData"
+        [options]="AbscencelineChartOptions"
+        [legend]="AbscencelineChartLegend"
+      >
+      </canvas>
+    </div>
   </div>
 </div>

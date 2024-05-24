@@ -1,8 +1,13 @@
-.content{
-    margin-left: 200px;
+.content {
+  margin-left: 200px;
+  transition: 0.3s;
 }
-app-sidebar{
-    position: fixed;
-    left: 0;
-    top: 0;
+app-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.content-active {
+  margin-left: 90px;
+  transition: 0.3s;
 }
