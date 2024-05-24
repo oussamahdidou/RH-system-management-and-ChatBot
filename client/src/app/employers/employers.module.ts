@@ -9,6 +9,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { BaseChartDirective } from 'ng2-charts';
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
   declarations: [ListEmployerComponent,EmployerComponent],
   imports: [
     CommonModule,
-    
+    BaseChartDirective,
     MatTableModule,
     MatSortModule,
     MatInputModule,

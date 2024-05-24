@@ -1,3 +1,29 @@
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero rerum, quos magni
-dolores modi soluta. Quaerat neque facilis vero minus quis reiciendis, ut,
-accusamus quisquam rerum nihil veniam voluptas molestiae!
+<header class="py-5 my-5"></header>
+<div
+  class="container-fluid d-flex py-3 justify-content-around charts-container mt-5"
+>
+  <div class="chart py-3 px-2">
+    <canvas
+      baseChart
+      width="475"
+      height="300"
+      [type]="'line'"
+      [data]="lineChartData"
+      [options]="lineChartOptions"
+      [legend]="lineChartLegend"
+    >
+    </canvas>
+  </div>
+  <div class="chart py-3 px-2">
+    <canvas
+      baseChart
+      width="475"
+      height="300"
+      [type]="'line'"
+      [data]="AbscencelineChartData"
+      [options]="AbscencelineChartOptions"
+      [legend]="AbscencelineChartLegend"
+    >
+    </canvas>
+  </div>
+</div>

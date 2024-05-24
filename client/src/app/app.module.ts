@@ -16,7 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatIconModule } from '@angular/material/icon';
-
+import {  BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 
   ],
   imports: [
+
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -38,7 +39,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [AppComponent]
 })
