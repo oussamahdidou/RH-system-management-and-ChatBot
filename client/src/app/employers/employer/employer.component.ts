@@ -30,7 +30,7 @@ export class EmployerComponent  {
       }
     ]
   };
-  public lineChartOptions: ChartOptions<'line'> = {
+  public lineChartOptions: ChartOptions<'line'> = { 
         responsive: false,
         scales: {
           y: {
