@@ -25,8 +25,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, NotFoundComponent, DashboardComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    SidebarComponent,
+    NotFoundComponent,
+    DashboardComponent,
+    HomeComponent,
+  ],
   imports: [
+    BaseChartDirective,
     CommonModule,
     BrowserModule,
     AppRoutingModule,
