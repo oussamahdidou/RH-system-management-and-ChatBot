@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  //  {
-  //       path: '',
-  //       component: HomeComponent,
-  //       pathMatch: 'full',
-  //   },
+  {
+    path: '',
+    component: HomeComponent,
+    pathMatch: 'full',
+  },
+  { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
 
   {
     path: 'abscence',
@@ -28,7 +30,6 @@ const routes: Routes = [
       ),
   },
   { path: '**', component: NotFoundComponent },
-  { path: 'dashboard', component: DashboardComponent },
 ];
 
 @NgModule({
