@@ -21,9 +21,10 @@ import {
   provideCharts,
   withDefaultRegisterables,
 } from 'ng2-charts';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, NotFoundComponent],
+  declarations: [AppComponent, SidebarComponent, NotFoundComponent, DashboardComponent],
   imports: [
     CommonModule,
     BrowserModule,
