@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EmployersModule } from './employers/employers.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -16,16 +16,15 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatIconModule } from '@angular/material/icon';
-import {  BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import {
+  BaseChartDirective,
+  provideCharts,
+  withDefaultRegisterables,
+} from 'ng2-charts';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    SidebarComponent,
-    NotFoundComponent,
-
-  ],
+  declarations: [AppComponent, SidebarComponent, NotFoundComponent],
   imports: [
-
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -36,12 +35,13 @@ import {  BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideAnimationsAsync(),
-    provideCharts(withDefaultRegisterables())
+    provideCharts(withDefaultRegisterables()),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

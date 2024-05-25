@@ -27,7 +27,12 @@
         </div>
         <div class="w-100 mt-5 px-5">
           <div class="button w-100 my-3">
-            <button mat-raised-button color="warn" class="w-100 mx-auto">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="Refuser()"
+              class="w-100 mx-auto"
+            >
               <mat-icon color="warn">cancel</mat-icon> Refuser
             </button>
           </div>
