@@ -11,6 +11,8 @@ import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { BaseChartDirective } from 'ng2-charts';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -34,7 +36,9 @@ const routes: Routes = [
     MatFormFieldModule,
     MatButtonModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
   ],
+  providers: [AuthService],
 })
 export class EmployersModule {}

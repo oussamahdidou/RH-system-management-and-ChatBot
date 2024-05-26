@@ -1,17 +1,16 @@
-<div class="profile-page">
+@if (Employer) {
+<div class="profile-page h-100">
   <div class="profile-section container-fluid py-3 px-4">
     <div class="profile-container row py-2 pt-4 px-4">
       <div
         class="col-lg-4 d-flex flex-column justify-content-center align-items-center gap-2"
       >
         <div class="profile-img w-50">
-          <img
-            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-            alt=""
-            class="img-fluid"
-          />
+          <img [src]="Employer.image" alt="" class="img-fluid" />
         </div>
-        <!-- <div class="button w-100 mx-auto px-5">
+
+        @if (authservice.$Pointeur|async) {
+        <div class="button w-100 mx-auto px-5">
           <button mat-raised-button color="warn" class="w-100 mx-auto">
             signal abscence
           </button>
@@ -21,13 +20,14 @@
           <button mat-raised-button color="primary" class="w-100 mx-auto">
             signal surtemps
           </button>
-                  <div class="button w-100 mx-auto px-5">
+        </div>
+        } @if (authservice.$Recruteur|async) {
+        <div class="button w-100 mx-auto px-5">
           <button mat-raised-button class="w-100 mx-auto" color="warn">
             Delete Account
           </button>
         </div>
-        </div> -->
-
+        } @if (authservice.token.unique_name===Employer.id) {
         <div class="button w-100 mx-auto px-5">
           <input
             type="file"
@@ -49,12 +49,12 @@
             <mat-icon>calendar_today</mat-icon> Demande Conges
           </button>
         </div>
+        }
       </div>
       <div class="col-lg-8 pt-5">
-        <h3 class="">Employer name</h3>
-        <p class="text-secondary">Poste : Develloper junior</p>
-        <p class="text-secondary">mail : example&#64;example.com</p>
-        <p class="text-secondary">phone : 06 51 75 54 23</p>
+        <h3 class="">{{ Employer.userName }}</h3>
+        <p class="text-secondary">mail : {{ Employer.email }}</p>
+        <p class="text-secondary">Poste : {{ Employer.poste }}</p>
       </div>
     </div>
   </div>
@@ -84,3 +84,5 @@
     </div>
   </div>
 </div>
+
+}

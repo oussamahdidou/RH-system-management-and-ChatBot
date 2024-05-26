@@ -10,7 +10,11 @@ const routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full',
   },
-  { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    pathMatch: 'full',
+  },
 
   {
     path: 'abscence',

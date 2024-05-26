@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { AuthService } from '../../services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EmployerService } from '../../services/employer.service';
 
 @Component({
   selector: 'app-employer',
@@ -8,6 +11,12 @@ import { ChartConfiguration, ChartOptions } from 'chart.js';
 })
 export class EmployerComponent {
   title = 'ng2-charts-demo';
+
+  constructor(
+    public readonly authservice: AuthService,
+    private route: ActivatedRoute,
+    private readonly employerservice: EmployerService
+  ) {}
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -68,14 +77,27 @@ export class EmployerComponent {
   };
   public AbscencelineChartLegend = true;
   fileName: string = '';
-
+  Employer: any;
+  itemId!: any;
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.fileName = input.files[0].name;
     }
   }
-  constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.itemId = params['id'];
+      this.employerservice.getemployersbyid(this.itemId).subscribe(
+        (response) => {
+          console.log(response);
+          this.Employer = response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+  }
 }
