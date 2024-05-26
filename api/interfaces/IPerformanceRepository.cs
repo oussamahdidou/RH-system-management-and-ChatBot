@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Abscence;
 using api.Dtos.Heuresupplimentaire;
+using api.Dtos.Stats;
 using api.Model;
 
 namespace api.interfaces
@@ -18,6 +19,6 @@ namespace api.interfaces
 
         Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesCharts();
         Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesChartsByUser(string EmployerId);
-
+        Task<StatsDto> GetStats();
     }
 }

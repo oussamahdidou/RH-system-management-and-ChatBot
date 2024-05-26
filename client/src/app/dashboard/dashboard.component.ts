@@ -10,6 +10,7 @@ import { error } from 'jquery';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
+  stats: any;
   abscencesdate: any[] = [];
   abscencesnum: any[] = [];
   surtempsdate: any[] = [];
@@ -164,29 +165,35 @@ export class DashboardComponent implements OnInit {
       },
       (error) => {}
     );
+    this.employerservice.stats().subscribe(
+      (response) => {
+        this.stats = response;
+      },
+      (error) => {}
+    );
   }
   extractColumnsAbscences(objects: any[]) {
     objects.forEach((obj) => {
-      this.abscencesdate.push(obj.date);
-      this.abscencesnum.push(obj.abscences);
+      this.abscencesdate.unshift(obj.date);
+      this.abscencesnum.unshift(obj.abscences);
     });
   }
   extractColumnsSurtemps(objects: any[]) {
     objects.forEach((obj) => {
-      this.surtempsdate.push(obj.date);
-      this.surtempsnum.push(obj.heuresupplimentaires);
+      this.surtempsdate.unshift(obj.date);
+      this.surtempsnum.unshift(obj.heuresupplimentaires);
     });
   }
   extractTopColumnsSurtemps(objects: any[]) {
     objects.forEach((obj) => {
-      this.surtempsemployers.push(obj.username);
-      this.surtempsemployersnum.push(obj.number);
+      this.surtempsemployers.unshift(obj.username);
+      this.surtempsemployersnum.unshift(obj.number);
     });
   }
   extractTopColumnsAbscences(objects: any[]) {
     objects.forEach((obj) => {
-      this.abscenceemployers.push(obj.username);
-      this.abscenceemployersnum.push(obj.number);
+      this.abscenceemployers.unshift(obj.username);
+      this.abscenceemployersnum.unshift(obj.number);
     });
   }
 }

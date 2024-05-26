@@ -91,14 +91,14 @@ export class EmployerComponent implements OnInit {
   }
   extractColumnsAbscences(objects: any[]) {
     objects.forEach((obj) => {
-      this.abscencesdates.push(obj.date);
-      this.abscencesnum.push(obj.abscences);
+      this.abscencesdates.unshift(obj.date);
+      this.abscencesnum.unshift(obj.abscences);
     });
   }
   extractColumnsSurtemps(objects: any[]) {
     objects.forEach((obj) => {
-      this.surtempsdates.push(obj.date);
-      this.surtempsnum.push(obj.heuresupplimentaires);
+      this.surtempsdates.unshift(obj.date);
+      this.surtempsnum.unshift(obj.heuresupplimentaires);
     });
   }
   ngOnInit() {

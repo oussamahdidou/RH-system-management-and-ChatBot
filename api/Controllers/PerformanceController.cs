@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Abscence;
 using api.Dtos.Heuresupplimentaire;
+using api.Dtos.Stats;
 using api.extensions;
 using api.interfaces;
 using api.Model;
@@ -93,6 +94,14 @@ namespace api.Controllers
                                .ToListAsync();
             return Ok(Users.Select(x => x.TopAbscencesfromModelToDto()));
 
+        }
+        [HttpGet("stats")]
+        public async Task<IActionResult> GetStats()
+        {
+            List<AppUser> appUsers = await userManager.Users.ToListAsync();
+            StatsDto statsDto = await performanceRepository.GetStats();
+            statsDto.Employers = appUsers.Count();
+            return Ok(statsDto);
         }
     }
 }

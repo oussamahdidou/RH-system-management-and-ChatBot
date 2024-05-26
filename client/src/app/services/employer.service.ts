@@ -47,4 +47,7 @@ export class EmployerService {
       `http://localhost:5111/api/Performance/Charts/Abscences/Employers`
     );
   }
+  stats(): Observable<any> {
+    return this.http.get(`http://localhost:5111/api/Performance/stats`);
+  }
 }

@@ -7,10 +7,11 @@
 .profile-container {
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
   background-color: white;
+  border-radius: 25px;
 }
 .profile-page {
   background-color: aliceblue;
-  height: 100%;
+  height: max-content;
 }
 .profile-img {
   border-radius: 50%;

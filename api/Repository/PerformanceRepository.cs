@@ -6,6 +6,7 @@ using api.Data;
 using api.Dtos.Abscence;
 using api.Dtos.Conges;
 using api.Dtos.Heuresupplimentaire;
+using api.Dtos.Stats;
 using api.extensions;
 using api.helpers;
 using api.interfaces;
@@ -137,6 +138,19 @@ namespace api.Repository
 
 
             return heuresSupplimentairesChartsDtos;
+        }
+
+        public async Task<StatsDto> GetStats()
+        {
+            List<Abscence> abscences = await apiDbContext.Abscences.Where(x => x.Date.Month == DateTime.Now.Month).ToListAsync();
+            List<Conges> conges = await apiDbContext.Conges.Where(x => x.DateDebut <= DateTime.Now && x.Datefin >= DateTime.Now && x.Status == CongesStatus.Approuver).ToListAsync();
+            List<Heuresupplimentaires> heuresupplimentaires = await apiDbContext.Heuresupplimentaires.Where(x => x.DateTime.Month == DateTime.Now.Month).ToListAsync();
+            return new StatsDto()
+            {
+                Abscences = abscences.Count(),
+                Conges = conges.Count(),
+                Surtemps = heuresupplimentaires.Count()
+            };
         }
 
         public async Task<Abscence> JustifyAbscence(int AbscenceId)
