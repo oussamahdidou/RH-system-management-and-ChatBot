@@ -17,4 +17,34 @@ export class EmployerService {
   getemployersbyid(id: String): Observable<any> {
     return this.http.get(`http://localhost:5111/api/Employers/Employers/${id}`);
   }
+  employerabscencesByid(id: String): Observable<any> {
+    return this.http.get(
+      `http://localhost:5111/api/Performance/Charts/Abscences/${id}`
+    );
+  }
+  employerabscences(): Observable<any> {
+    return this.http.get(
+      `http://localhost:5111/api/Performance/Charts/Abscences`
+    );
+  }
+  employersurtempsByid(id: String): Observable<any> {
+    return this.http.get(
+      `http://localhost:5111/api/Performance/Charts/Surtemps/${id}`
+    );
+  }
+  employersurtemps(): Observable<any> {
+    return this.http.get(
+      `http://localhost:5111/api/Performance/Charts/Surtemps`
+    );
+  }
+  topemployerssurtemps(): Observable<any> {
+    return this.http.get(
+      `http://localhost:5111/api/Performance/Charts/Surtemps/Employers`
+    );
+  }
+  topemployersabscences(): Observable<any> {
+    return this.http.get(
+      `http://localhost:5111/api/Performance/Charts/Abscences/Employers`
+    );
+  }
 }

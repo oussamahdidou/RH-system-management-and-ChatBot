@@ -1,17 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployerService } from '../../services/employer.service';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-employer',
   templateUrl: './employer.component.html',
   styleUrl: './employer.component.css',
 })
-export class EmployerComponent {
+export class EmployerComponent implements OnInit {
   title = 'ng2-charts-demo';
-
+  surtempsdates: any[] = [];
+  abscencesdates: any[] = [];
+  surtempsnum: any[] = [];
+  abscencesnum: any[] = [];
   constructor(
     public readonly authservice: AuthService,
     private route: ActivatedRoute,
@@ -19,10 +23,10 @@ export class EmployerComponent {
   ) {}
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: this.surtempsdates,
     datasets: [
       {
-        data: [6, 9, 23, 8, 5, 5, 4],
+        data: this.surtempsnum,
         label: 'heures supplimentaires',
         fill: true,
         tension: 0.5,
@@ -39,19 +43,19 @@ export class EmployerComponent {
       y: {
         beginAtZero: true,
         min: 0,
-        max: 100,
+        max: 20,
         ticks: {
-          stepSize: 20,
+          stepSize: 4,
         },
       },
     },
   };
   public lineChartLegend = true;
   public AbscencelineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: this.abscencesdates,
     datasets: [
       {
-        data: [5.07, 2.03, 1.5, 9.53, 6.21, 3.89, 50],
+        data: this.abscencesnum,
         label: 'Abscences',
         fill: true,
         tension: 0.5,
@@ -68,9 +72,9 @@ export class EmployerComponent {
       y: {
         beginAtZero: true,
         min: 0,
-        max: 100,
+        max: 20,
         ticks: {
-          stepSize: 20,
+          stepSize: 4,
         },
       },
     },
@@ -85,18 +89,43 @@ export class EmployerComponent {
       this.fileName = input.files[0].name;
     }
   }
-
+  extractColumnsAbscences(objects: any[]) {
+    objects.forEach((obj) => {
+      this.abscencesdates.push(obj.date);
+      this.abscencesnum.push(obj.abscences);
+    });
+  }
+  extractColumnsSurtemps(objects: any[]) {
+    objects.forEach((obj) => {
+      this.surtempsdates.push(obj.date);
+      this.surtempsnum.push(obj.heuresupplimentaires);
+    });
+  }
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.itemId = params['id'];
       this.employerservice.getemployersbyid(this.itemId).subscribe(
         (response) => {
-          console.log(response);
           this.Employer = response;
         },
         (error) => {
           console.log(error);
         }
+      );
+      this.employerservice.employersurtempsByid(this.itemId).subscribe(
+        (response) => {
+          this.extractColumnsSurtemps(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      this.employerservice.employerabscencesByid(this.itemId).subscribe(
+        (response) => {
+          this.extractColumnsAbscences(response);
+          console.log(response);
+        },
+        (error) => {}
       );
     });
   }

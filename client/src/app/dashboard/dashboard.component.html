@@ -234,6 +234,7 @@ c47 51 105 66 163 41z"
   </div>
   <div class="chart-container row container-fluid">
     <div class="col-lg-6 pb-3">
+      @if ( surtempsdate.length>0 && surtempsnum.length) {
       <div class="chart py-3 px-2 mx-1">
         <canvas
           baseChart
@@ -244,8 +245,10 @@ c47 51 105 66 163 41z"
         >
         </canvas>
       </div>
+      }
     </div>
     <div class="col-lg-6">
+      @if (surtempsemployers.length>0&& surtempsemployersnum.length) {
       <div class="chart py-3 px-2 mx-1">
         <canvas
           baseChart
@@ -256,8 +259,10 @@ c47 51 105 66 163 41z"
         >
         </canvas>
       </div>
+      }
     </div>
     <div class="col-lg-6">
+      @if (abscencesdate.length>0 && abscencesnum.length) {
       <div class="chart py-3 px-2 mx-1">
         <canvas
           baseChart
@@ -268,8 +273,10 @@ c47 51 105 66 163 41z"
         >
         </canvas>
       </div>
+      }
     </div>
     <div class="col-lg-6">
+      @if (abscenceemployers.length >0 && abscenceemployersnum.length>0) {
       <div class="chart py-3 px-2 mx-1">
         <canvas
           baseChart
@@ -280,6 +287,7 @@ c47 51 105 66 163 41z"
         >
         </canvas>
       </div>
+      }
     </div>
   </div>
 </div>

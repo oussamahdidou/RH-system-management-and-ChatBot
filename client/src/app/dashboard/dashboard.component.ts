@@ -1,17 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { AuthService } from '../services/auth.service';
+import { EmployerService } from '../services/employer.service';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  abscencesdate: any[] = [];
+  abscencesnum: any[] = [];
+  surtempsdate: any[] = [];
+  surtempsnum: any[] = [];
+  surtempsemployers: any[] = [];
+  surtempsemployersnum: any[] = [];
+  abscenceemployers: any[] = [];
+  abscenceemployersnum: any[] = [];
+  constructor(
+    public readonly authservice: AuthService,
+    private readonly employerservice: EmployerService
+  ) {}
   public lineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: this.surtempsdate,
     datasets: [
       {
-        data: [6, 9, 23, 8, 5, 5, 4],
+        data: this.surtempsnum,
         label: 'heures supplimentaires',
         fill: true,
         tension: 0.5,
@@ -37,10 +52,10 @@ export class DashboardComponent {
   };
   public lineChartLegend = true;
   public barlineChartData: ChartConfiguration<'bar'>['data'] = {
-    labels: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7'],
+    labels: this.surtempsemployers,
     datasets: [
       {
-        data: [6, 9, 23, 8, 5, 5, 4],
+        data: this.surtempsemployersnum,
         label: 'heures supplimentaires',
         backgroundColor: 'rgba(0,0,255,0.3)',
         borderColor: 'black',
@@ -66,10 +81,10 @@ export class DashboardComponent {
 
   public barChartLegend = true;
   public AbscentebarlineChartData: ChartConfiguration<'bar'>['data'] = {
-    labels: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7'],
+    labels: this.abscenceemployers,
     datasets: [
       {
-        data: [6, 9, 23, 8, 5, 5, 4],
+        data: this.abscenceemployersnum,
         label: 'Abscences',
         backgroundColor: 'rgba(255,0,0,0.3)',
         borderColor: 'black',
@@ -96,10 +111,10 @@ export class DashboardComponent {
   public AbscentebarChartLegend = true;
 
   public AbscencelineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: this.abscencesdate,
     datasets: [
       {
-        data: [5.07, 2.03, 1.5, 9.53, 6.21, 3.89, 50],
+        data: this.abscencesnum,
         label: 'Abscences',
         fill: true,
         tension: 0.5,
@@ -124,4 +139,54 @@ export class DashboardComponent {
     },
   };
   public AbscencelineChartLegend = true;
+  ngOnInit(): void {
+    this.employerservice.employerabscences().subscribe(
+      (response) => {
+        this.extractColumnsAbscences(response);
+      },
+      (error) => {}
+    );
+    this.employerservice.employersurtemps().subscribe(
+      (response) => {
+        this.extractColumnsSurtemps(response);
+      },
+      (error) => {}
+    );
+    this.employerservice.topemployersabscences().subscribe(
+      (response) => {
+        this.extractTopColumnsAbscences(response);
+      },
+      (error) => {}
+    );
+    this.employerservice.topemployerssurtemps().subscribe(
+      (response) => {
+        this.extractTopColumnsSurtemps(response);
+      },
+      (error) => {}
+    );
+  }
+  extractColumnsAbscences(objects: any[]) {
+    objects.forEach((obj) => {
+      this.abscencesdate.push(obj.date);
+      this.abscencesnum.push(obj.abscences);
+    });
+  }
+  extractColumnsSurtemps(objects: any[]) {
+    objects.forEach((obj) => {
+      this.surtempsdate.push(obj.date);
+      this.surtempsnum.push(obj.heuresupplimentaires);
+    });
+  }
+  extractTopColumnsSurtemps(objects: any[]) {
+    objects.forEach((obj) => {
+      this.surtempsemployers.push(obj.username);
+      this.surtempsemployersnum.push(obj.number);
+    });
+  }
+  extractTopColumnsAbscences(objects: any[]) {
+    objects.forEach((obj) => {
+      this.abscenceemployers.push(obj.username);
+      this.abscenceemployersnum.push(obj.number);
+    });
+  }
 }

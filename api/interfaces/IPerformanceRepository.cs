@@ -13,6 +13,11 @@ namespace api.interfaces
         Task<Heuresupplimentaires> AddHeuressupplimentaires(CreateHeuresupplimentaire createHeuresupplimentaire);
         Task<Abscence> AddAbscence(CreateAbscenceDto createAbscenceDto);
         Task<Abscence> JustifyAbscence(int AbscenceId);
+        Task<List<AbscencesChartsDto>> GetAbscencesCharts();
+        Task<List<AbscencesChartsDto>> GetAbscencesChartsByUser(string EmployerId);
+
+        Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesCharts();
+        Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesChartsByUser(string EmployerId);
 
     }
 }

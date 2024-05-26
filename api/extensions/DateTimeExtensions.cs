@@ -21,6 +21,24 @@ namespace api.extensions
 
             return (year, previousMonth);
         }
+        public static List<(int year, int month)> GetLastFiveMonths()
+        {
+            DateTime date = DateTime.Now;
+            List<(int year, int month)> months = new List<(int year, int month)>();
+            for (int i = 0; i < 7; i++)
+            {
+                months.Add((date.AddMonths(-i).Year, date.AddMonths(-i).Month));
+            }
+            // month = date.Month - 1;
+            // int year = date.Year;
+            // if (previousMonth == 0)
+            // {
+            //     previousMonth = 12;
+            //     year -= 1;
+            // }
+
+            return months;
+        }
         public static int CalculateMonthsDifference(this DateTime startDate)
         {
             DateTime currentDate = DateTime.Now;
@@ -47,6 +65,7 @@ namespace api.extensions
 
             return years;
         }
+
         public static int DureeConges(this string typeconges)
         {
             if (typeconges == CongesTypes.CongesAnnuel)
