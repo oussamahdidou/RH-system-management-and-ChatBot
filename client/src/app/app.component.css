@@ -1,6 +1,7 @@
 .content {
   margin-left: 200px;
   transition: 0.3s;
+  height: 100%;
 }
 app-sidebar {
   position: fixed;
@@ -9,5 +10,6 @@ app-sidebar {
 }
 .content-active {
   margin-left: 90px;
+  height: 100%;
   transition: 0.3s;
 }

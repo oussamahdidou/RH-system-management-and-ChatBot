@@ -18,6 +18,10 @@ const routes: Routes = [
       import('./abscences/abscences.module').then((m) => m.AbscencesModule),
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
     path: 'employers',
     loadChildren: () =>
       import('./employers/employers.module').then((m) => m.EmployersModule),

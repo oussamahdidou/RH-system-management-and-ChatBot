@@ -37,7 +37,7 @@ export class DashboardComponent {
   };
   public lineChartLegend = true;
   public barlineChartData: ChartConfiguration<'bar'>['data'] = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7'],
     datasets: [
       {
         data: [6, 9, 23, 8, 5, 5, 4],
@@ -66,7 +66,7 @@ export class DashboardComponent {
 
   public barChartLegend = true;
   public AbscentebarlineChartData: ChartConfiguration<'bar'>['data'] = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7'],
     datasets: [
       {
         data: [6, 9, 23, 8, 5, 5, 4],
