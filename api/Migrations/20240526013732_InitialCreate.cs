@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace api.Migrations
 {
     /// <inheritdoc />
-    public partial class FloatToDouble : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,6 +52,7 @@ namespace api.Migrations
                     SalaireDeBase = table.Column<double>(type: "float", nullable: false),
                     IntegrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Poste = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -314,10 +315,10 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0ed400ac-7f1a-4bca-8299-248b90e28412", null, "Manager", "MANAGER" },
-                    { "158f495d-b468-4a1b-98a0-39ebef1436e5", null, "Employer", "EMPLOYER" },
-                    { "db42ebc6-dd9b-4dfb-92df-e9f0c79f62e4", null, "Recruteur", "RECRUTEUR" },
-                    { "fe6e7be3-c09f-4926-b4e9-d8633c584822", null, "Pointeur", "POINTEUR" }
+                    { "04c27553-428f-4581-b819-ff2a3e987850", null, "Recruteur", "RECRUTEUR" },
+                    { "4642d0ab-994c-4ad7-90ca-feae7f4e1081", null, "Employer", "EMPLOYER" },
+                    { "b40331f0-5610-4a43-966e-f068782c7acd", null, "Pointeur", "POINTEUR" },
+                    { "cbde3e9c-4893-410d-884a-fdd2d6f65732", null, "Manager", "MANAGER" }
                 });
 
             migrationBuilder.CreateIndex(

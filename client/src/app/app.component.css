@@ -13,3 +13,6 @@ app-sidebar {
   height: 100%;
   transition: 0.3s;
 }
+.routes {
+  height: 100%;
+}

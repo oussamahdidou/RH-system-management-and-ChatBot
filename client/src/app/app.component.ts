@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,10 @@ import { ChartConfiguration, ChartOptions } from 'chart.js';
 })
 export class AppComponent {
   receivedBool: boolean = false;
-
+  /**
+   *
+   */
+  constructor(public readonly authservice: AuthService) {}
   onMyBoolChange(newBool: boolean) {
     this.receivedBool = newBool;
     console.log('Received boolean value from child:', this.receivedBool);

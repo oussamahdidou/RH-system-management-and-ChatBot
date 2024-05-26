@@ -13,6 +13,7 @@ export class LoginComponent {
   login() {
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
+        console.log(response);
         window.location.href = '/';
       },
       (error) => {

@@ -23,6 +23,8 @@ import {
 } from 'ng2-charts';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -46,10 +48,12 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     provideAnimationsAsync(),
     provideCharts(withDefaultRegisterables()),
+    AuthService,
   ],
   bootstrap: [AppComponent],
 })

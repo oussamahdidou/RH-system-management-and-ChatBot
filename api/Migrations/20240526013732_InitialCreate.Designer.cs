@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240519000813_FloatToDouble")]
-    partial class FloatToDouble
+    [Migration("20240526013732_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,25 +54,25 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "158f495d-b468-4a1b-98a0-39ebef1436e5",
+                            Id = "4642d0ab-994c-4ad7-90ca-feae7f4e1081",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         },
                         new
                         {
-                            Id = "0ed400ac-7f1a-4bca-8299-248b90e28412",
+                            Id = "cbde3e9c-4893-410d-884a-fdd2d6f65732",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "fe6e7be3-c09f-4926-b4e9-d8633c584822",
+                            Id = "b40331f0-5610-4a43-966e-f068782c7acd",
                             Name = "Pointeur",
                             NormalizedName = "POINTEUR"
                         },
                         new
                         {
-                            Id = "db42ebc6-dd9b-4dfb-92df-e9f0c79f62e4",
+                            Id = "04c27553-428f-4581-b819-ff2a3e987850",
                             Name = "Recruteur",
                             NormalizedName = "RECRUTEUR"
                         });
@@ -257,6 +257,9 @@ namespace api.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("IntegrationDate")
                         .HasColumnType("datetime2");
