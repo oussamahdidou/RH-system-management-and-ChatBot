@@ -17,4 +17,19 @@ export class PerformanceService {
   justifyabscence(id: number): Observable<any> {
     return this.http.get(`http://localhost:5111/api/Performance/Justify/${id}`);
   }
+  addabscence(employerId: any, dateTime: any): Observable<any> {
+    return this.http.post(`http://localhost:5111/api/Performance/AddAbscence`, {
+      employerId: employerId,
+      dateTime: dateTime,
+    });
+  }
+  addsurtemps(employerId: any, dateTime: any): Observable<any> {
+    return this.http.post(
+      `http://localhost:5111/api/Performance/Heuressupplimentaire`,
+      {
+        employerId: employerId,
+        dateTime: dateTime,
+      }
+    );
+  }
 }

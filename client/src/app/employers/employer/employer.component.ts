@@ -4,6 +4,8 @@ import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployerService } from '../../services/employer.service';
 import { error } from 'jquery';
+import { PerformanceService } from '../../services/performance.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employer',
@@ -19,7 +21,8 @@ export class EmployerComponent implements OnInit {
   constructor(
     public readonly authservice: AuthService,
     private route: ActivatedRoute,
-    private readonly employerservice: EmployerService
+    private readonly employerservice: EmployerService,
+    private readonly performanceservice: PerformanceService
   ) {}
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
@@ -127,6 +130,96 @@ export class EmployerComponent implements OnInit {
         },
         (error) => {}
       );
+    });
+  }
+  addabscence() {
+    Swal.fire({
+      title: 'Select a datetime',
+      html: '<input type="datetime-local" id="datetime" class="swal2-input">',
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      preConfirm: () => {
+        const datetime = (
+          document.getElementById('datetime') as HTMLInputElement
+        ).value;
+        if (!datetime) {
+          Swal.showValidationMessage('Please enter a datetime');
+        }
+        return datetime;
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const selectedDatetime = result.value;
+        Swal.fire({
+          title: 'Are you sure?',
+          text: `You selected: ${selectedDatetime}`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, confirm it!',
+          cancelButtonText: 'No, cancel',
+        }).then((confirmationResult) => {
+          if (confirmationResult.isConfirmed) {
+            this.performanceservice
+              .addabscence(this.itemId, selectedDatetime)
+              .subscribe(
+                (response) => {
+                  console.log(response);
+                },
+                (error) => {}
+              );
+            Swal.fire({
+              title: 'Success!',
+              text: 'Your datetime has been confirmed.',
+              icon: 'success',
+            });
+          }
+        });
+      }
+    });
+  }
+  addsurtemps() {
+    Swal.fire({
+      title: 'Select a datetime',
+      html: '<input type="datetime-local" id="datetime" class="swal2-input">',
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      preConfirm: () => {
+        const datetime = (
+          document.getElementById('datetime') as HTMLInputElement
+        ).value;
+        if (!datetime) {
+          Swal.showValidationMessage('Please enter a datetime');
+        }
+        return datetime;
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const selectedDatetime = result.value;
+        Swal.fire({
+          title: 'Are you sure?',
+          text: `You selected: ${selectedDatetime}`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, confirm it!',
+          cancelButtonText: 'No, cancel',
+        }).then((confirmationResult) => {
+          if (confirmationResult.isConfirmed) {
+            this.performanceservice
+              .addsurtemps(this.itemId, selectedDatetime)
+              .subscribe(
+                (response) => {
+                  console.log(response);
+                },
+                (error) => {}
+              );
+            Swal.fire({
+              title: 'Success!',
+              text: 'Your datetime has been confirmed.',
+              icon: 'success',
+            });
+          }
+        });
+      }
     });
   }
 }

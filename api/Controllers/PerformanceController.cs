@@ -28,6 +28,12 @@ namespace api.Controllers
         [HttpPost("AddAbscence")]
         public async Task<IActionResult> AddAbscence([FromBody] CreateAbscenceDto createAbscenceDto)
         {
+            if (!await userManager.Users.AnyAsync(u => u.Id == createAbscenceDto.EmployerId))
+            {
+                return BadRequest("user don`t exist");
+            }
+
+
             Abscence? abscence = await performanceRepository.AddAbscence(createAbscenceDto);
             if (abscence == null)
             {
@@ -48,6 +54,10 @@ namespace api.Controllers
         [HttpPost("Heuressupplimentaire")]
         public async Task<IActionResult> AddHeuresupplimentaire([FromBody] CreateHeuresupplimentaire createHeuresupplimentaire)
         {
+            if (!await userManager.Users.AnyAsync(x => x.Id == createHeuresupplimentaire.EmployerId))
+            {
+                return BadRequest("no user exist");
+            }
             Heuresupplimentaires? heuresupplimentaires = await performanceRepository.AddHeuressupplimentaires(createHeuresupplimentaire);
             if (heuresupplimentaires == null)
             {
