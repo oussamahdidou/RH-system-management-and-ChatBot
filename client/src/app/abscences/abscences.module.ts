@@ -9,35 +9,31 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { authGuard } from '../guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
     children: [
-
-
-      { path: 'abscences', component: ListAbscenceComponent },
+      {
+        path: 'abscences',
+        component: ListAbscenceComponent,
+      },
       { path: 'conges', component: ListCongesComponent },
-
     ],
   },
 ];
 
-
-
 @NgModule({
-  declarations: [
-    ListAbscenceComponent,
-    ListCongesComponent
-  ],
+  declarations: [ListAbscenceComponent, ListCongesComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-        MatTableModule,
+    MatTableModule,
     MatSortModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatIconModule
-  ]
+    MatIconModule,
+  ],
 })
-export class AbscencesModule { }
+export class AbscencesModule {}
