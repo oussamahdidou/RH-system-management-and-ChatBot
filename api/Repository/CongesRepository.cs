@@ -89,5 +89,15 @@ namespace api.Repository
                         && enCongesDto.Time <= x.Datefin);
         }
 
+        public async Task<int> CongesAnnuelleAuthorisee(string EmployerId)
+        {
+            List<Conges> conges = await apiDbContext.Conges.Where(x => x.AppUserId == EmployerId).ToListAsync();
+            int somme = 0;
+            foreach (var item in conges)
+            {
+                somme = somme + item.Duree;
+            }
+            return somme;
+        }
     }
 }

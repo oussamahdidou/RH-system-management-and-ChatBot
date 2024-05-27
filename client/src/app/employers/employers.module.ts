@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ListEmployerComponent } from './list-employer/list-employer.component';
 import { EmployerComponent } from './employer/employer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -38,7 +38,8 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forChild(routes),
+    ReactiveFormsModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, DatePipe],
 })
 export class EmployersModule {}

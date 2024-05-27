@@ -6,6 +6,8 @@ import { EmployerService } from '../../services/employer.service';
 import { error } from 'jquery';
 import { PerformanceService } from '../../services/performance.service';
 import Swal from 'sweetalert2';
+import { FormBuilder } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-employer',
@@ -20,10 +22,30 @@ export class EmployerComponent implements OnInit {
   abscencesnum: any[] = [];
   constructor(
     public readonly authservice: AuthService,
+    private datePipe: DatePipe,
     private route: ActivatedRoute,
     private readonly employerservice: EmployerService,
     private readonly performanceservice: PerformanceService
   ) {}
+  calculateMonthDifference(startDate: any, endDate: any): string {
+    let start = new Date(startDate);
+    let end = new Date(endDate);
+
+    // Swap the dates if start date is later than end date
+    if (start > end) {
+      [start, end] = [end, start];
+    }
+
+    const startYear = start.getFullYear();
+    const startMonth = start.getMonth();
+    const endYear = end.getFullYear();
+    const endMonth = end.getMonth();
+
+    const totalMonths = (endYear - startYear) * 12 + (endMonth - startMonth);
+
+    // Convert the result to string
+    return totalMonths.toString();
+  }
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: this.surtempsdates,
@@ -86,6 +108,7 @@ export class EmployerComponent implements OnInit {
   fileName: string = '';
   Employer: any;
   itemId!: any;
+  congespassed: any;
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -107,6 +130,12 @@ export class EmployerComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.itemId = params['id'];
+      this.employerservice.congesannuel(this.itemId).subscribe(
+        (response) => {
+          this.congespassed = response;
+        },
+        (error) => {}
+      );
       this.employerservice.getemployersbyid(this.itemId).subscribe(
         (response) => {
           this.Employer = response;
@@ -221,5 +250,164 @@ export class EmployerComponent implements OnInit {
         });
       }
     });
+  }
+
+  displaymodal() {
+    Swal.fire({
+      title: 'Select a datetime',
+      html: `
+<table>
+<tr>
+     <td>   Date: </td><td><input type="datetime-local" id="datetime" class="swal2-input"  value="2024-05-28T12:00"></td>
+      </tr>
+      <tr>
+       <td>   Type: </td> 
+       <td>
+        <select id="type" class="swal2-select" >
+          <option value="MariageSalarie selected">MariageSalarie</option>
+          <option value="CongeNaissance">CongeNaissance</option>
+          <option value="MariageEnfant">MariageEnfant</option>
+          <option value="CongesAnnuel" >CongesAnnuel</option>
+          <option value="DecesProche">DecesProche</option>
+          <option value="DecesLoin">DecesLoin</option>
+          <option value="Chirurgie">Chirurgie</option>
+          <option value="Maternite">Maternite</option>
+          <option value="Examen">Examen</option>
+        </select>
+        </td>
+        </tr>
+    <tr><td> Duree :  </td><td> <input type="number" min="7" id="duree" value="3" class="swal2-input"> </td></tr>
+
+
+</table>
+      `,
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      preConfirm: () => {
+        const datetime = (
+          document.getElementById('datetime') as HTMLInputElement
+        ).value;
+
+        const type = (document.getElementById('type') as HTMLSelectElement)
+          .value;
+        const duree = (document.getElementById('duree') as HTMLInputElement)
+          .value;
+        if (!datetime) {
+          Swal.showValidationMessage('Please enter a datetime');
+        }
+        return { datetime, duree, type };
+      },
+      didOpen: () => {
+        const datetimeElement = document.getElementById(
+          'datetime'
+        ) as HTMLInputElement;
+        const typeElement = document.getElementById(
+          'type'
+        ) as HTMLSelectElement;
+
+        typeElement.addEventListener('change', () => this.updateDuree());
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const selectedDatetime = result.value;
+        Swal.fire({
+          title: 'Are you sure?',
+          text: `You selected: ${selectedDatetime.datetime}`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, confirm it!',
+          cancelButtonText: 'No, cancel',
+        }).then((confirmationResult) => {
+          if (confirmationResult.isConfirmed) {
+            this.employerservice
+              .addconges(
+                selectedDatetime.datetime,
+                selectedDatetime.duree,
+                selectedDatetime.type
+              )
+              .subscribe((response) => {
+                Swal.fire({
+                  title: 'Success!',
+                  text: 'Your datetime has been confirmed.',
+                  icon: 'success',
+                });
+              });
+          }
+        });
+      }
+    });
+  }
+
+  // updateSelectState() {
+  //   const datetimeElement = document.getElementById(
+  //     'datetime'
+  //   ) as HTMLInputElement;
+  //   const typeElement = document.getElementById('type') as HTMLSelectElement;
+
+  //   if (datetimeElement.value) {
+  //     typeElement.disabled = false;
+  //   } else {
+  //     typeElement.disabled = true;
+  //   }
+  // }
+
+  updateDuree() {
+    const datetimeElement = document.getElementById(
+      'datetime'
+    ) as HTMLInputElement;
+    const type = (document.getElementById('type') as HTMLSelectElement).value;
+    const duree = document.getElementById('duree') as HTMLInputElement;
+
+    switch (type) {
+      case 'MariageSalarie':
+        duree.value = '3';
+        duree.disabled = true;
+        break;
+      case 'CongeNaissance':
+        duree.value = '1';
+        duree.disabled = true;
+        break;
+      case 'MariageEnfant':
+        duree.value = '2';
+        duree.disabled = true;
+        break;
+      case 'CongesAnnuel':
+        const monthDifference: any = this.calculateMonthDifference(
+          datetimeElement.value,
+          this.Employer.integrationDate
+        );
+        const durationValue = (
+          monthDifference * 1.5 -
+          this.congespassed
+        ).toString();
+        duree.value = durationValue;
+        console.log(duree.value);
+        duree.max = duree.value;
+        duree.disabled = false;
+        break;
+      case 'DecesProche':
+        duree.value = '3';
+        duree.disabled = true;
+        break;
+      case 'DecesLoin':
+        duree.value = '1';
+        duree.disabled = true;
+        break;
+      case 'Chirurgie':
+        duree.value = '5';
+        duree.disabled = true;
+        break;
+      case 'Maternite':
+        duree.value = '98';
+        duree.disabled = true;
+        break;
+      case 'Examen':
+        duree.value = '1';
+        duree.disabled = true;
+        break;
+      default:
+        duree.value = '';
+        duree.disabled = false;
+    }
   }
 }

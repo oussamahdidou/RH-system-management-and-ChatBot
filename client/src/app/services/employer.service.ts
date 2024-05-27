@@ -50,4 +50,18 @@ export class EmployerService {
   stats(): Observable<any> {
     return this.http.get(`http://localhost:5111/api/Performance/stats`);
   }
+  congesannuel(id: any): Observable<any> {
+    return this.http.get(`http://localhost:5111/api/Conges/${id}`);
+  }
+  addconges(date: any, duree: any, type: any): Observable<any> {
+    return this.http.post(
+      `http://localhost:5111/api/Conges`,
+      {
+        dateDebut: date,
+        duree: duree,
+        type: type,
+      },
+      { headers: this.authservice.headers }
+    );
+  }
 }

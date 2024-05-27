@@ -55,7 +55,12 @@
           </button>
         </div>
         <div class="button w-100 mx-auto px-5">
-          <button mat-raised-button color="accent" class="w-100 mx-auto">
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="displaymodal()"
+            class="w-100 mx-auto"
+          >
             <mat-icon>calendar_today</mat-icon> Demande Conges
           </button>
         </div>
