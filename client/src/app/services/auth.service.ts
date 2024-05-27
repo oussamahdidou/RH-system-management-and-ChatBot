@@ -22,7 +22,7 @@ export class AuthService {
       this._$isLoggedin.next(true);
       this.jwt = localStorage.getItem('token') || '';
       this.token = this.getUser(this.jwt);
-      console.log(this.token);
+
       if (this.token && this.token.role === 'Manager') {
         this._$Manager.next(true);
         this._$Pointeur.next(false);

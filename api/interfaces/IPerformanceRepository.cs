@@ -20,5 +20,6 @@ namespace api.interfaces
         Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesCharts();
         Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesChartsByUser(string EmployerId);
         Task<StatsDto> GetStats();
+        Task<List<GetAbscencesDto>> GetAllAbscences();
     }
 }

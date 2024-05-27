@@ -98,6 +98,11 @@ namespace api.Repository
             return abscencesChartsDtos;
         }
 
+        public async Task<List<GetAbscencesDto>> GetAllAbscences()
+        {
+            return await apiDbContext.Abscences.Include(x => x.AppUser).OrderByDescending(x => x.Date).Select(x => x.GetAbscencesfromModelToDto()).ToListAsync();
+        }
+
         public async Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesCharts()
         {
             List<(int year, int month)> months = DateTimeExtensions.GetLastFiveMonths();

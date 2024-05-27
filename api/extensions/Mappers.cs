@@ -28,5 +28,16 @@ namespace api.extensions
             };
             return topAbscencesDto;
         }
+        public static GetAbscencesDto GetAbscencesfromModelToDto(this Abscence abscence)
+        {
+            GetAbscencesDto topAbscencesDto = new GetAbscencesDto()
+            {
+                DateTime = abscence.Date,
+                id = abscence.Id,
+                name = abscence.AppUser.UserName,
+                status = abscence.Status,
+            };
+            return topAbscencesDto;
+        }
     }
 }

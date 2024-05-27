@@ -25,7 +25,7 @@ namespace api.Controllers
             this.performanceRepository = performanceRepository;
             this.userManager = userManager;
         }
-        [HttpPost("Abscence")]
+        [HttpPost("AddAbscence")]
         public async Task<IActionResult> AddAbscence([FromBody] CreateAbscenceDto createAbscenceDto)
         {
             Abscence? abscence = await performanceRepository.AddAbscence(createAbscenceDto);
@@ -35,8 +35,8 @@ namespace api.Controllers
             }
             return Ok(abscence);
         }
-        [HttpPut("Justify/{AbscenceId:int}")]
-        public async Task<IActionResult> JustifyAbscence(int AbscenceId)
+        [HttpGet("Justify/{AbscenceId:int}")]
+        public async Task<IActionResult> JustifyAbscence([FromRoute] int AbscenceId)
         {
             Abscence? abscence = await performanceRepository.JustifyAbscence(AbscenceId);
             if (abscence == null)
@@ -102,6 +102,11 @@ namespace api.Controllers
             StatsDto statsDto = await performanceRepository.GetStats();
             statsDto.Employers = appUsers.Count();
             return Ok(statsDto);
+        }
+        [HttpGet("Abscences")]
+        public async Task<IActionResult> GetAbscences()
+        {
+            return Ok(await performanceRepository.GetAllAbscences());
         }
     }
 }

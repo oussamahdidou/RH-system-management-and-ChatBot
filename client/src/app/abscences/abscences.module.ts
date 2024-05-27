@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { authGuard } from '../guards/auth.guard';
 import { pointeurGuard } from '../guards/pointeur.guard';
 import { managerGuard } from '../guards/manager.guard';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { PerformanceService } from '../services/performance.service';
 const routes: Routes = [
   {
     path: '',
@@ -41,6 +43,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
+    HttpClientModule,
   ],
+  providers: [PerformanceService],
 })
 export class AbscencesModule {}

@@ -1,42 +1,44 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { PerformanceService } from '../../services/performance.service';
+import { error } from 'jquery';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-abscence',
   templateUrl: './list-abscence.component.html',
-  styleUrl: './list-abscence.component.css'
+  styleUrl: './list-abscence.component.css',
 })
 export class ListAbscenceComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'date', 'action'];
+  displayedColumns: string[] = ['name', 'dateTime', 'action'];
   dataSource: MatTableDataSource<any>;
-
-  items: any[] = [
-    { name: 'Item 1', date: new Date('2023-01-01'), status: 'NonJustifier' },
-    { name: 'Item 2', date: new Date('2023-02-01'), status: 'Justified' },
-    { name: 'Item 3', date: new Date('2023-03-01'), status: 'Pending' },
-    { name: 'Item 4', date: new Date('2023-04-01'), status: 'NonJustifier' },
-    { name: 'Item 5', date: new Date('2023-05-01'), status: 'Justified' },
-    { name: 'Item 6', date: new Date('2023-06-01'), status: 'Pending' },
-    { name: 'Item 7', date: new Date('2023-07-01'), status: 'NonJustifier' },
-    { name: 'Item 8', date: new Date('2023-08-01'), status: 'Justified' },
-    { name: 'Item 9', date: new Date('2023-09-01'), status: 'Pending' },
-    { name: 'Item 10', date: new Date('2023-10-01'), status: 'NonJustifier' },
-    { name: 'Item 11', date: new Date('2023-11-01'), status: 'Justified' },
-    { name: 'Item 12', date: new Date('2023-12-01'), status: 'Pending' },
-    { name: 'Item 13', date: new Date('2024-01-01'), status: 'NonJustifier' },
-    { name: 'Item 14', date: new Date('2024-02-01'), status: 'Justified' },
-    { name: 'Item 15', date: new Date('2024-03-01'), status: 'Pending' }
-];
-
+  items: any[] = [];
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
-    this.dataSource = new MatTableDataSource(this.items);
+  constructor(private readonly perfrormanceservice: PerformanceService) {
+    this.dataSource = new MatTableDataSource();
   }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
+    this.perfrormanceservice.getabscences().subscribe(
+      (response) => {
+        this.items = response;
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.sortingDataAccessor = (item, property) => {
+          switch (property) {
+            case 'action':
+              return item.status;
+            default:
+              return item[property];
+          }
+        };
+        this.dataSource.sort = this.sort;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   applyFilter(event: Event) {
@@ -45,7 +47,31 @@ export class ListAbscenceComponent implements OnInit {
   }
 
   justify(item: any) {
-    item.status = 'Justified';
-    this.dataSource.data = [...this.items]; // Refresh the dataSource to reflect changes
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Justify!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.perfrormanceservice.justifyabscence(item.id).subscribe(
+          (response) => {
+            Swal.fire({
+              title: 'Justified!',
+              text: 'the abscence is justified.',
+              icon: 'success',
+            });
+            item.status = 'Justified';
+            this.dataSource.data = [...this.items];
+          },
+          (error) => {}
+        );
+      }
+    });
+
+    // Refresh the dataSource to reflect changes
   }
 }
