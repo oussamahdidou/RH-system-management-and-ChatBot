@@ -4,6 +4,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { authGuard } from './guards/auth.guard';
+import { rhserviceGuard } from './guards/rhservice.guard';
+import { recruteurGuard } from './guards/recruteur.guard';
 
 const routes: Routes = [
   {
@@ -15,8 +17,8 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     pathMatch: 'full',
+    canActivate: [rhserviceGuard],
   },
-
   {
     path: 'abscence',
     loadChildren: () =>
@@ -30,6 +32,7 @@ const routes: Routes = [
     path: 'employers',
     loadChildren: () =>
       import('./employers/employers.module').then((m) => m.EmployersModule),
+    canActivate: [rhserviceGuard],
   },
   {
     path: 'recrutement',
@@ -37,6 +40,7 @@ const routes: Routes = [
       import('./recrutement/recrutement.module').then(
         (m) => m.RecrutementModule
       ),
+    canActivate: [recruteurGuard],
   },
   { path: '**', component: NotFoundComponent },
 ];

@@ -10,6 +10,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { authGuard } from '../guards/auth.guard';
+import { pointeurGuard } from '../guards/pointeur.guard';
+import { managerGuard } from '../guards/manager.guard';
 const routes: Routes = [
   {
     path: '',
@@ -17,8 +19,13 @@ const routes: Routes = [
       {
         path: 'abscences',
         component: ListAbscenceComponent,
+        canActivate: [pointeurGuard],
       },
-      { path: 'conges', component: ListCongesComponent },
+      {
+        path: 'conges',
+        component: ListCongesComponent,
+        canActivate: [managerGuard],
+      },
     ],
   },
 ];
