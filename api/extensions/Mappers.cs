@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Abscence;
+using api.Dtos.Conges;
 using api.Dtos.Heuresupplimentaire;
 using api.Model;
 
@@ -38,6 +39,20 @@ namespace api.extensions
                 status = abscence.Status,
             };
             return topAbscencesDto;
+        }
+        public static GetCongesDto getCongesDtoFromModelToDto(this Conges conges)
+        {
+            GetCongesDto getCongesDto = new GetCongesDto()
+            {
+                Id = conges.Id,
+                DateDebut = conges.DateDebut,
+                DateFin = conges.Datefin,
+                Duree = conges.Duree,
+                Name = conges.AppUser.UserName,
+                Status = conges.Status,
+                Type = conges.Type,
+            };
+            return getCongesDto;
         }
     }
 }

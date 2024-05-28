@@ -32,4 +32,13 @@ export class PerformanceService {
       }
     );
   }
+  getconges(): Observable<any> {
+    return this.http.get(`http://localhost:5111/api/Conges`);
+  }
+  approuver(id: any): Observable<any> {
+    return this.http.get(`http://localhost:5111/api/Conges/Approuver/${id}`);
+  }
+  refuser(id: any): Observable<any> {
+    return this.http.get(`http://localhost:5111/api/Conges/Refuser/${id}`);
+  }
 }

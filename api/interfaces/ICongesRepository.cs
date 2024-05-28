@@ -14,5 +14,6 @@ namespace api.interfaces
         Task<Conges> RefuserConges(int CongesId);
         Task<bool> EnConges(EnCongesDto enCongesDto);
         Task<int> CongesAnnuelleAuthorisee(string EmployerId);
+        Task<List<GetCongesDto>> GetConges();
     }
 }

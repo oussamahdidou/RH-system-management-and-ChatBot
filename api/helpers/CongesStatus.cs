@@ -9,7 +9,7 @@ namespace api.helpers
     {
         public const string EnAttente = "EnAttente";
         public const string Approuver = "Approuver";
-        public const string Refuser = "refuser";
+        public const string Refuser = "Refuser";
 
     }
 }

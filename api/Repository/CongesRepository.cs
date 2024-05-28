@@ -91,13 +91,19 @@ namespace api.Repository
 
         public async Task<int> CongesAnnuelleAuthorisee(string EmployerId)
         {
-            List<Conges> conges = await apiDbContext.Conges.Where(x => x.AppUserId == EmployerId).ToListAsync();
+            List<Conges> conges = await apiDbContext.Conges.Where(x => x.AppUserId == EmployerId && x.Status == CongesStatus.Approuver && x.Type == CongesTypes.CongesAnnuel).ToListAsync();
             int somme = 0;
             foreach (var item in conges)
             {
                 somme = somme + item.Duree;
             }
             return somme;
+        }
+
+        public async Task<List<GetCongesDto>> GetConges()
+        {
+            List<GetCongesDto> getCongesDtos = await apiDbContext.Conges.Include(x => x.AppUser).Select(x => x.getCongesDtoFromModelToDto()).ToListAsync();
+            return getCongesDtos;
         }
     }
 }
