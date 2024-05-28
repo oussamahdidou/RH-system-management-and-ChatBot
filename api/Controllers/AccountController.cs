@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos.Account;
@@ -9,6 +10,7 @@ using api.helpers;
 using api.interfaces;
 using api.Model;
 using FluentEmail.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,14 +24,16 @@ namespace api.Controller
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IFluentEmail fluentEmail;
-
+        private readonly IWebHostEnvironment webHostEnvironment;
         private readonly ITokenService tokenService;
-        public AccountController(IFluentEmail fluentEmail, ITokenService tokenService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(IWebHostEnvironment webHostEnvironment, IFluentEmail fluentEmail, ITokenService tokenService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
+
             this.tokenService = tokenService;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.fluentEmail = fluentEmail;
+            this.webHostEnvironment = webHostEnvironment;
         }
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
@@ -107,7 +111,52 @@ namespace api.Controller
             }
 
         }
+        [Authorize]
+        [HttpPut]
+        public async Task<IActionResult> UpdateUserImage([FromForm] UpdateImageDto updateImageDto)
+        {
+            try
+            {
+                string UserName = User.GetUsername();
+                AppUser? appUser = await userManager.FindByNameAsync(UserName);
+                if (appUser == null)
+                {
+                    return NotFound("userNotfound");
+                }
 
+                if (updateImageDto.image == null || updateImageDto.image.Length == 0)
+                {
+                    return BadRequest("Invalid image file.");
+                }
+
+                string imagepath = await updateImageDto.image.UploadImage(webHostEnvironment);
+                if (string.IsNullOrEmpty(imagepath))
+                {
+                    return BadRequest("Failed to upload image.");
+                }
+
+                appUser.Image = imagepath;
+                var result = await userManager.UpdateAsync(appUser);
+                if (result.Succeeded)
+                {
+                    return Ok(appUser);
+                }
+
+                return BadRequest("Something went wrong");
+            }
+            catch (DecoderFallbackException ex)
+            {
+                // Log specific exception details
+                Console.WriteLine($"DecoderFallbackException: {ex.Message}");
+                return StatusCode(500, "Encoding error while processing the request.");
+            }
+            catch (Exception ex)
+            {
+                // Log general exception details
+                Console.WriteLine($"Exception: {ex.Message}");
+                return StatusCode(500, "An error occurred while processing the request.");
+            }
+        }
 
     }
 }

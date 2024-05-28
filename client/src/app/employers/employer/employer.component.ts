@@ -112,7 +112,14 @@ export class EmployerComponent implements OnInit {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.fileName = input.files[0].name;
+      const formData = new FormData();
+      formData.append('image', input.files[0]);
+      this.employerservice.updateprofile(formData).subscribe(
+        (response) => {
+          this.Employer = response;
+        },
+        (error) => {}
+      );
     }
   }
   extractColumnsAbscences(objects: any[]) {

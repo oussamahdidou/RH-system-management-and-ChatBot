@@ -34,5 +34,38 @@ namespace api.extensions
                 return null;
             }
         }
+
+        public static async Task<string> UploadImage(this IFormFile formFile, IWebHostEnvironment webHostEnvironment)
+        {
+            if (webHostEnvironment == null)
+            {
+                Console.WriteLine("ach katkhwr");
+                return null;
+            }
+
+            try
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "profile");
+                if (!Directory.Exists(uploadsFolder))
+                    Directory.CreateDirectory(uploadsFolder);
+
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + formFile.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await formFile.CopyToAsync(fileStream);
+                }
+
+                return "http://localhost:5111/profile/" + uniqueFileName;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"UploadImage Exception: {ex.Message}");
+                return null;
+            }
+        }
+
+
     }
 }

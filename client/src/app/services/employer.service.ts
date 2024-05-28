@@ -64,4 +64,9 @@ export class EmployerService {
       { headers: this.authservice.headers }
     );
   }
+  updateprofile(image: any): Observable<any> {
+    return this.http.put('http://localhost:5111/api/Account', image, {
+      headers: this.authservice.headers,
+    });
+  }
 }
