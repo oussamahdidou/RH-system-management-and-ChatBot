@@ -118,7 +118,7 @@ namespace api.Repository
                     NumTel = candidature.NumTel,
                 };
                 await apiDbContext.CandidatureUrgents.AddAsync(candidatureUrgent);
-                apiDbContext.Candidatures.Remove(candidature);
+                candidature.Status = CandidatureStatus.Refuser;
                 await apiDbContext.SaveChangesAsync();
                 return candidatureUrgent;
             }
