@@ -13,8 +13,10 @@ export class LoginComponent {
   login() {
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
-        console.log(response);
-        window.location.href = `/employers/${this.authService.token.unique_name}`;
+        console.log(this.authService.getUser(response.token));
+        window.location.href = `/employers/${
+          this.authService.getUser(response.token).unique_name
+        }`;
       },
       (error) => {
         console.log(error);

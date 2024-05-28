@@ -276,7 +276,7 @@ export class EmployerComponent implements OnInit {
         </select>
         </td>
         </tr>
-    <tr><td> Duree :  </td><td> <input type="number" min="7" id="duree" value="3" class="swal2-input"> </td></tr>
+    <tr><td> Duree :  </td><td> <input type="number" disabled min="7" id="duree" value="3" class="swal2-input"> </td></tr>
 
 
 </table>
@@ -360,11 +360,11 @@ export class EmployerComponent implements OnInit {
 
     switch (type) {
       case 'MariageSalarie':
-        duree.value = '3';
+        duree.value = '4';
         duree.disabled = true;
         break;
       case 'CongeNaissance':
-        duree.value = '1';
+        duree.value = '3';
         duree.disabled = true;
         break;
       case 'MariageEnfant':
@@ -390,11 +390,11 @@ export class EmployerComponent implements OnInit {
         duree.disabled = true;
         break;
       case 'DecesLoin':
-        duree.value = '1';
+        duree.value = '2';
         duree.disabled = true;
         break;
       case 'Chirurgie':
-        duree.value = '5';
+        duree.value = '2';
         duree.disabled = true;
         break;
       case 'Maternite':
