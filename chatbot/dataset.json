@@ -598,5 +598,225 @@
   {
     "question": "Hello! Do you have any feedback on our services?",
     "answer": "Hello! Overall, we're very satisfied, but we'd appreciate faster response times on support queries."
+  },
+  {
+    "question": "What is the salary range for this position?",
+    "answer": "The salary range for this position depends on factors such as experience, qualifications, and the specific responsibilities of the role. Would you like to discuss your expectations?"
+  },
+  {
+    "question": "Can you provide information about the compensation package?",
+    "answer": "We offer competitive salaries along with benefits such as health insurance, retirement plans, and opportunities for bonuses or stock options."
+  },
+  {
+    "question": "Do you have a salary structure or pay scale?",
+    "answer": "Yes, we have a structured pay scale based on job roles, experience levels, and market benchmarks."
+  },
+  {
+    "question": "How often do employees receive salary increases or bonuses?",
+    "answer": "Salary increases and bonuses are typically tied to performance evaluations and are reviewed annually."
+  },
+  {
+    "question": "Are there opportunities for salary negotiation?",
+    "answer": "We strive to offer competitive compensation packages, but there may be some room for negotiation depending on the candidate's qualifications and experience."
+  },
+  {
+    "question": "What factors are considered when determining salary?",
+    "answer": "Factors such as the candidate's experience, skills, industry certifications, and the complexity of the role are taken into account when determining salary."
+  },
+  {
+    "question": "Can you provide details about additional perks or benefits?",
+    "answer": "In addition to salary, we offer benefits such as flexible work arrangements, professional development opportunities, and wellness programs."
+  },
+  {
+    "question": "Is there transparency around salary and compensation within the company?",
+    "answer": "Yes, we aim to be transparent about salary ranges and compensation structures to ensure fairness and equity among employees."
+  },
+  {
+    "question": "Are there opportunities for performance-based bonuses or incentives?",
+    "answer": "Yes, we offer performance-based bonuses or incentives to reward exceptional performance and contributions to the company's success."
+  },
+  {
+    "question": "Can you discuss the salary review process?",
+    "answer": "Salary reviews are typically conducted annually or biannually, and employees have the opportunity to discuss their performance and compensation with their managers during these reviews."
+  },
+  {
+    "question": "How does the company ensure pay equity and fairness?",
+    "answer": "We have policies and processes in place to ensure pay equity and fairness, including regular salary benchmarking, diversity and inclusion initiatives, and unbiased performance evaluations."
+  },
+  {
+    "question": "Are there any opportunities for salary progression or career advancement?",
+    "answer": "Yes, employees have opportunities for salary progression and career advancement based on performance, skills development, and contributions to the company."
+  },
+  {
+    "question": "Do you offer any incentives for obtaining industry certifications?",
+    "answer": "Yes, we may offer incentives such as salary increases, bonuses, or reimbursement for obtaining relevant industry certifications."
+  },
+  {
+    "question": "Can you provide information about the average salary for similar positions in the industry?",
+    "answer": "While I don't have specific data on hand, salaries for similar positions in the industry vary depending on factors such as location, company size, and demand for specific skills."
+  },
+  {
+    "question": "How many vacation days do employees receive?",
+    "answer": "Employees typically receive [number] vacation days per year, which may increase with tenure."
+  },
+  {
+    "question": "Is there a separate allocation for sick leave?",
+    "answer": "Yes, in addition to vacation days, employees receive [number] sick days per year for illness or personal emergencies."
+  },
+  {
+    "question": "Are there opportunities for flexible scheduling or remote work?",
+    "answer": "Yes, we offer flexible scheduling and remote work options to accommodate work-life balance and individual preferences."
+  },
+  {
+    "question": "Can you provide information about holiday policies?",
+    "answer": "We observe [number] paid holidays per year, including national holidays and additional company-specific holidays."
+  },
+  {
+    "question": "How does the company handle requests for time off?",
+    "answer": "Employees can request time off through our HR system, and requests are evaluated based on workload and team availability."
+  },
+  {
+    "question": "Is there a probationary period before employees can take time off?",
+    "answer": "Typically, employees can take time off after completing the probationary period, which is usually [number] months."
+  },
+  {
+    "question": "What benefits are included in the employee benefits package?",
+    "answer": "Our employee benefits package includes health insurance, retirement plans, paid time off, and additional perks such as gym memberships or wellness programs."
+  },
+  {
+    "question": "Can you provide details about health insurance coverage?",
+    "answer": "We offer comprehensive health insurance coverage, including medical, dental, and vision plans, with options for individual or family coverage."
+  },
+  {
+    "question": "Are there opportunities for employees to participate in retirement plans?",
+    "answer": "Yes, employees are eligible to participate in our retirement plans, such as 401(k) or pension plans, with employer contributions and matching options available."
+  },
+  {
+    "question": "Do you offer any wellness or employee assistance programs?",
+    "answer": "Yes, we provide wellness programs that may include fitness classes, mental health resources, and counseling services to support employees' well-being."
+  },
+  {
+    "question": "Are there any educational or professional development benefits?",
+    "answer": "Yes, we offer educational reimbursement programs or opportunities for professional development through training courses, conferences, and certifications."
+  },
+  {
+    "question": "How does the company support work-life balance for employees?",
+    "answer": "We support work-life balance through flexible scheduling, remote work options, and initiatives such as designated 'wellness days' or additional time off for personal reasons."
+  },
+  {
+    "question": "Can employees roll over unused vacation days from one year to the next?",
+    "answer": "Yes, employees may be able to roll over a portion of unused vacation days from one year to the next, subject to company policy."
+  },
+  {
+    "question": "Are there any additional benefits or perks available to employees?",
+    "answer": "In addition to standard benefits, employees may have access to perks such as employee discounts, commuter benefits, or company-sponsored social events."
+  },
+  {
+    "question": "How does the company handle parental leave for employees?",
+    "answer": "We offer parental leave benefits to support employees during significant life events such as the birth or adoption of a child, with options for both maternity and paternity leave."
+  },
+  {
+    "question": "Can employees purchase additional vacation days or take unpaid leave?",
+    "answer": "Depending on company policy, employees may have the option to purchase additional vacation days or take unpaid leave for extended time off."
+  },
+  {
+    "question": "What job openings are currently available at your company?",
+    "answer": "We currently have openings for software developers, network engineers, data analysts, project managers, and cybersecurity specialists."
+  },
+  {
+    "question": "Can you tell me more about the software developer positions?",
+    "answer": "We are looking for software developers with experience in languages such as Java, Python, and JavaScript, who can work on web and mobile applications."
+  },
+  {
+    "question": "What qualifications do you require for the network engineer role?",
+    "answer": "The ideal candidate should have a degree in Computer Science or a related field, along with certifications like CCNA or CCNP, and experience with network infrastructure and security."
+  },
+  {
+    "question": "What are the responsibilities of the data analyst position?",
+    "answer": "Data analysts are responsible for collecting, analyzing, and interpreting large datasets to help drive business decisions, requiring skills in SQL, Excel, and data visualization tools."
+  },
+  {
+    "question": "Can you describe the project manager role?",
+    "answer": "Our project managers oversee IT projects from inception to completion, ensuring they are delivered on time, within scope, and budget. They should have experience in Agile methodologies and excellent leadership skills."
+  },
+  {
+    "question": "What skills are required for the cybersecurity specialist position?",
+    "answer": "Candidates should have a strong understanding of network security, penetration testing, and incident response, along with certifications like CISSP, CEH, or CISM."
+  },
+  {
+    "question": "Are there any entry-level positions available?",
+    "answer": "Yes, we have entry-level positions such as junior software developers, IT support technicians, and intern roles in various departments."
+  },
+  {
+    "question": "Do you have any internship opportunities?",
+    "answer": "Yes, we offer internships in software development, data analysis, cybersecurity, and project management, providing hands-on experience and professional development."
+  },
+  {
+    "question": "What is the application process for these positions?",
+    "answer": "Interested candidates can apply through our careers page by submitting their resume and cover letter. Selected candidates will be contacted for interviews."
+  },
+  {
+    "question": "What benefits do you offer to employees?",
+    "answer": "We offer competitive salaries, health insurance, retirement plans, paid time off, professional development opportunities, and flexible work arrangements."
+  },
+  {
+    "question": "Are there remote work opportunities available?",
+    "answer": "Yes, we offer remote work opportunities for many of our positions, depending on the role and project requirements."
+  },
+  {
+    "question": "What is the work environment like at your company?",
+    "answer": "Our work environment is collaborative, innovative, and supportive. We encourage open communication, teamwork, and continuous learning."
+  },
+  {
+    "question": "Do you offer opportunities for career advancement?",
+    "answer": "Yes, we provide clear career paths and opportunities for promotion, professional development, and continuous learning to help our employees grow within the company."
+  },
+  {
+    "question": "How do you support employee training and development?",
+    "answer": "We offer various training programs, workshops, and access to online learning platforms to help employees enhance their skills and stay updated with industry trends."
+  },
+  {
+    "question": "What is the typical interview process for these positions?",
+    "answer": "The interview process usually includes an initial phone screening, technical assessments, and one or more in-person or virtual interviews with team members and hiring managers."
+  },
+  {
+    "question": "Can you provide details about the junior software developer position?",
+    "answer": "Junior software developers will assist with coding, debugging, and testing software applications. They should have a basic understanding of programming languages and a willingness to learn."
+  },
+  {
+    "question": "Are there any specific certifications or degrees required for these positions?",
+    "answer": "Specific requirements vary by role, but generally, a degree in Computer Science or a related field and relevant industry certifications are preferred."
+  },
+  {
+    "question": "How long does the hiring process typically take?",
+    "answer": "The hiring process can take anywhere from a few weeks to a couple of months, depending on the position and the number of applicants."
+  },
+  {
+    "question": "What kind of projects will new hires be working on?",
+    "answer": "New hires will work on a variety of projects such as software development, network infrastructure, data analysis, and cybersecurity initiatives, depending on their role."
+  },
+  {
+    "question": "Do you offer any relocation assistance for new employees?",
+    "answer": "Yes, we offer relocation assistance for certain positions, particularly for senior roles or positions requiring specialized skills."
+  },
+  {
+    "question": "How can I learn more about the company culture?",
+    "answer": "You can learn more about our company culture by visiting our website, reading employee testimonials, and following us on social media."
+  },
+  {
+    "question": "What is the probation period for new hires?",
+    "answer": "The probation period for new hires is typically [number] months, during which their performance and fit with the company are assessed."
+  },
+  {
+    "question": "Are there any opportunities for part-time positions?",
+    "answer": "Yes, we offer part-time positions and flexible work arrangements depending on the role and project requirements."
+  },
+  {
+    "question": "Can you provide more information about the IT support technician role?",
+    "answer": "IT support technicians provide technical assistance to employees, troubleshoot hardware and software issues, and ensure smooth IT operations."
+  },
+  {
+    "question": "What is the expected start date for these positions?",
+    "answer": "The expected start date varies by position, but we aim to have new hires start within [number] weeks after the offer is accepted."
   }
 ]
