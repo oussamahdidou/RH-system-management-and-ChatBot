@@ -1,5 +1,5 @@
 @if
-((authservice.$Manager|async)||(authservice.$Pointeur|async)||(authservice.$Recruteur|async))
+(((authservice.$Manager|async)||(authservice.$Pointeur|async)||(authservice.$Recruteur|async))&&showComponent)
 {<app-sidebar (myBoolChange)="onMyBoolChange($event)"></app-sidebar>}
 <div
   class="routes"
@@ -7,13 +7,15 @@
     !receivedBool &&
     ((authservice.$Manager | async) ||
       (authservice.$Pointeur | async) ||
-      (authservice.$Recruteur | async))
+      (authservice.$Recruteur | async)) &&
+    showComponent
   "
   [class.content-active]="
     receivedBool &&
     ((authservice.$Manager | async) ||
       (authservice.$Pointeur | async) ||
-      (authservice.$Recruteur | async))
+      (authservice.$Recruteur | async)) &&
+    showComponent
   "
 >
   <router-outlet></router-outlet>
