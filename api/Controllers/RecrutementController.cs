@@ -7,7 +7,9 @@ using api.extensions;
 using api.helpers;
 using api.interfaces;
 using api.Model;
+using api.Repository;
 using FluentEmail.Core;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -54,5 +56,31 @@ namespace api.Controllers
                 return BadRequest("something went wrong");
             return Ok(candidature);
         }
+        [HttpGet("Annonces")]
+        public async Task<IActionResult> GetAnnonces()
+        {
+            return Ok(await recrutementRepository.GetAnnoncesAsync());
+        }
+        [HttpGet("Annonces/{id:int}")]
+        public async Task<IActionResult> GetAnnonceById([FromRoute] int id)
+        {
+            Annonce? annonce = await recrutementRepository.GetAnnonceByIdAsync(id);
+            if (annonce == null)
+            {
+                return NotFound("notfound");
+            }
+            return Ok(annonce);
+        }
+        [HttpGet("Candidature/{id:int}")]
+        public async Task<IActionResult> GetCandidatureById([FromRoute] int id)
+        {
+            Candidature? candidature = await recrutementRepository.GetCandidatureById(id);
+            if (candidature == null)
+            {
+                return NotFound("notfound");
+            }
+            return Ok(candidature);
+        }
     }
+
 }
