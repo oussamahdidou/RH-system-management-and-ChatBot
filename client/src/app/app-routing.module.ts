@@ -6,11 +6,17 @@ import { HomeComponent } from './home/home.component';
 import { authGuard } from './guards/auth.guard';
 import { rhserviceGuard } from './guards/rhservice.guard';
 import { recruteurGuard } from './guards/recruteur.guard';
+import { ChatbootComponent } from './chatboot/chatboot.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'AI',
+    component: ChatbootComponent,
     pathMatch: 'full',
   },
   {

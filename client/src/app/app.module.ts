@@ -25,6 +25,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { ChatbootComponent } from './chatboot/chatboot.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AuthService } from './services/auth.service';
     NotFoundComponent,
     DashboardComponent,
     HomeComponent,
+    ChatbootComponent,
   ],
   imports: [
     BaseChartDirective,
