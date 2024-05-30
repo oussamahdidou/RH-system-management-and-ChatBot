@@ -29,13 +29,11 @@ def ask():
     data = request.get_json()
     user_input = data['input']
     
-    # Preprocess user input
+    
     processed_input = vectorizer.transform([user_input])
 
-    # Find the most similar question
     similar_question_index = find_most_similar_question(processed_input, vectorizer, questions)
 
-    # Retrieve the corresponding answer
     if similar_question_index is not None:
         response = answers[similar_question_index]
     else:

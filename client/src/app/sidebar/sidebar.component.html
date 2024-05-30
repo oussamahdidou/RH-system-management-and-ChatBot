@@ -166,10 +166,7 @@ l3 -437 150 -43 c168 -49 419 -105 570 -129 100 -16 351 -45 391 -45 21 0 22
 
       @if (!myBool) {<b> Employers</b>}
     </span>
-    <span
-      class="mx-auto nav-items w-100 py-3 ps-3"
-      routerLink="/recrutement/annonces"
-    >
+    <span (click)="recruteur()" class="mx-auto nav-items w-100 py-3 ps-3">
       <svg
         fill="currentColor"
         version="1.1"
@@ -228,10 +225,7 @@ l3 -437 150 -43 c168 -49 419 -105 570 -129 100 -16 351 -45 391 -45 21 0 22
       </svg>
       @if (!myBool) {<b> Hiring</b>}
     </span>
-    <span
-      routerLink="/abscence/conges"
-      class="mx-auto nav-items w-100 py-3 ps-3"
-    >
+    <span (click)="manager()" class="mx-auto nav-items w-100 py-3 ps-3">
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
@@ -275,10 +269,7 @@ l104 -104 107 104 c114 111 141 124 181 88 38 -34 24 -62 -89 -175 l-108 -108
 
       @if (!myBool) {<b> Conges</b>}
     </span>
-    <span
-      routerLink="/abscence/abscences"
-      class="mx-auto nav-items w-100 py-3 ps-3"
-    >
+    <span (click)="pointeur()" class="mx-auto nav-items w-100 py-3 ps-3">
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
