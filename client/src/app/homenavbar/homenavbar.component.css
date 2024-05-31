@@ -1,0 +1,6 @@
+.nav-container {
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  left: 0;
+  top: 0;
+}

@@ -17,18 +17,29 @@ export class AppComponent implements OnInit {
     public readonly authservice: AuthService,
     private router: Router
   ) {}
-  ngOnInit(): void {
+
+  ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showComponent = !(
-          event.url === '/auth/login' ||
-          event.url === '/' ||
-          event.url === '/AI'
+          this.isAuthRoute(event.url) ||
+          this.isHomeRoute(event.url) ||
+          this.isAIRoute(event.url)
         );
       }
     });
   }
 
+  private isAuthRoute(url: string): boolean {
+    return url.startsWith('/auth');
+  }
+
+  private isHomeRoute(url: string): boolean {
+    return url === '/' || url.startsWith('/#');
+  }
+  private isAIRoute(url: string): boolean {
+    return url === '/AI' || url.startsWith('/AI#');
+  }
   onMyBoolChange(newBool: boolean) {
     this.receivedBool = newBool;
     console.log('Received boolean value from child:', this.receivedBool);

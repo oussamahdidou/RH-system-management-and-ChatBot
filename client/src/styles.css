@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "placeholder-loading/src/scss/placeholder-loading.scss";
 html,
 body {
   height: 100%;
@@ -32,4 +32,7 @@ app-root {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555; /* Thumb color on hover */
+}
+html {
+  scroll-behavior: smooth;
 }

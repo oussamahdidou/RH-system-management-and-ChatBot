@@ -1,8 +1,12 @@
-<div class="chat-bot-page h-100">
-  <div class="container d-flex justify-content-center align-items-center py-5">
+<app-homenavbar></app-homenavbar>
+<div class="chat-bot-page h-100 pt-2">
+  <div
+    class="container d-flex justify-content-center align-items-center"
+    id="section1"
+  >
     <div class="pt-5">
       <svg
-        class="mx-auto text-center d-flex justify-center"
+        class="mx-auto text-center d-flex justify-center animate__animated animate__fadeInDown"
         height="100px"
         width="100px"
         version="1.1"
@@ -40,10 +44,12 @@
           />
         </g>
       </svg>
-      <h1 class="text-center fw-bold mt-3">
+      <h1
+        class="text-center fw-bold mt-3 animate__animated animate__fadeInDown"
+      >
         ChatBot <span style="color: rgb(42, 109, 238)">AI Assist</span>
       </h1>
-      <p class="px-5 text-center">
+      <p class="px-5 text-center animate__animated animate__fadeInDown">
         Introducing ChatBot AI Assist: Your Gateway to Discovering Our Company.
         Experience the magic of seamless communication as you explore our
         offerings, streamline interactions, and uncover the essence of our
@@ -52,7 +58,7 @@
       </p>
     </div>
   </div>
-  <div class="chat-bot container-fluid">
+  <div class="chat-bot container-fluid animate__animated animate__fadeInDown">
     <div class="container-fluid input-container d-flex px-3 py-2">
       <form action="" (ngSubmit)="search()" class="d-flex w-100">
         <input
@@ -80,5 +86,23 @@
     </div>
   </div>
 
-  {{ output }}
+  <div class="container mt-3">
+    @if (placdholder) {
+    <div class="ph-item border-0 w-100">
+      <div class="ph-col-12">
+        <div class="ph-row">
+          <div class="ph-col-6 big"></div>
+          <div class="ph-col-4 empty big"></div>
+          <div class="ph-col-2 big"></div>
+          <div class="ph-col-4"></div>
+          <div class="ph-col-8 empty"></div>
+          <div class="ph-col-6"></div>
+          <div class="ph-col-6 empty"></div>
+          <div class="ph-col-12"></div>
+        </div>
+      </div>
+    </div>
+    }
+    <p id="typed-output">{{ output }}</p>
+  </div>
 </div>

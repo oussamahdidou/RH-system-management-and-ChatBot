@@ -26,6 +26,8 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { ChatbootComponent } from './chatboot/chatboot.component';
+import { DashboardnavbarComponent } from './dashboardnavbar/dashboardnavbar.component';
+import { HomenavbarComponent } from './homenavbar/homenavbar.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ChatbootComponent } from './chatboot/chatboot.component';
     DashboardComponent,
     HomeComponent,
     ChatbootComponent,
+    DashboardnavbarComponent,
+    HomenavbarComponent,
   ],
   imports: [
     BaseChartDirective,
