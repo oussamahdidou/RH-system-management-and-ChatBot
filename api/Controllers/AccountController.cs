@@ -26,14 +26,16 @@ namespace api.Controller
         private readonly IFluentEmail fluentEmail;
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly ITokenService tokenService;
-        public AccountController(IWebHostEnvironment webHostEnvironment, IFluentEmail fluentEmail, ITokenService tokenService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
-        {
+        private readonly IRecrutementRepository recrutementRepository;
 
+        public AccountController(IRecrutementRepository recrutementRepository, IWebHostEnvironment webHostEnvironment, IFluentEmail fluentEmail, ITokenService tokenService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        {
             this.tokenService = tokenService;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.fluentEmail = fluentEmail;
             this.webHostEnvironment = webHostEnvironment;
+            this.recrutementRepository = recrutementRepository;
         }
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
@@ -57,6 +59,7 @@ namespace api.Controller
         [HttpPost("Register/User")]
         public async Task<IActionResult> RegisterUser([FromBody] RegistrationDto model)
         {
+            await recrutementRepository.Integrer(model.Id);
             try
             {
                 var appUser = new AppUser()

@@ -100,7 +100,7 @@ namespace api.Repository
 
         public async Task<List<GetAbscencesDto>> GetAllAbscences()
         {
-            return await apiDbContext.Abscences.Include(x => x.AppUser).OrderByDescending(x => x.Date).Select(x => x.GetAbscencesfromModelToDto()).ToListAsync();
+            return await apiDbContext.Abscences.Where(x => x.Status == Abscencestatues.Justifier || (x.Status == Abscencestatues.NonJustifier && x.Date.AddHours(48) > DateTime.Now)).Include(x => x.AppUser).OrderByDescending(x => x.Date).Select(x => x.GetAbscencesfromModelToDto()).ToListAsync();
         }
 
         public async Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesCharts()

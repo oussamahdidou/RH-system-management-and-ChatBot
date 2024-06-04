@@ -17,6 +17,7 @@ namespace api.interfaces
         Task<Candidature> GetCandidatureById(int Id);
         Task<Candidature> Selectionner(int Id, DateTime dateTime);
         Task<CandidatureUrgent> Refuser(int Id);
+        Task<Candidature> Integrer(int Id);
 
     }
 }

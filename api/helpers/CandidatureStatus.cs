@@ -10,6 +10,7 @@ namespace api.helpers
         public const string EnAttente = "EnAttente";
         public const string Selectionner = "Selectionner";
         public const string Refuser = "Refuser";
+        public const string Integrer = "Integrer";
 
 
 

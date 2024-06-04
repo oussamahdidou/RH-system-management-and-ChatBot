@@ -11,32 +11,31 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { RecrutementService } from '../services/recrutement.service';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-
-
       { path: 'annonces', component: ListAnnonceComponent },
       { path: 'annonce/:id', component: AnnonceComponent },
       { path: 'candidature/:id', component: CandidatureComponent },
-      { path: 'postule/:id', component: PostuleComponent }
+      { path: 'postule/:id', component: PostuleComponent },
     ],
   },
 ];
 
-
 @NgModule({
-  declarations: [    
-ListAnnonceComponent,
-AnnonceComponent,
-CandidatureComponent,
-PostuleComponent,
-
+  declarations: [
+    ListAnnonceComponent,
+    AnnonceComponent,
+    CandidatureComponent,
+    PostuleComponent,
   ],
   imports: [
-     CommonModule,
+    CommonModule,
     MatTableModule,
     MatSortModule,
     MatInputModule,
@@ -44,6 +43,9 @@ PostuleComponent,
     MatButtonModule,
     MatIconModule,
     RouterModule.forChild(routes),
-  ]
+    HttpClientModule,
+    SharedModule,
+  ],
+  providers: [RecrutementService],
 })
-export class RecrutementModule { }
+export class RecrutementModule {}

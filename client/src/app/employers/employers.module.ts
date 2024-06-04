@@ -13,6 +13,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [AuthService, DatePipe],
 })

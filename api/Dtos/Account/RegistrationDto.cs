@@ -9,6 +9,8 @@ namespace api.Dtos.Account
 {
     public class RegistrationDto
     {
+
+        public int Id { get; set; }
         [Required]
         public string? Username { get; set; }
         [Required]

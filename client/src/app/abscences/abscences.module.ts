@@ -14,6 +14,7 @@ import { pointeurGuard } from '../guards/pointeur.guard';
 import { managerGuard } from '../guards/manager.guard';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PerformanceService } from '../services/performance.service';
+import { SharedModule } from '../shared/shared.module';
 const routes: Routes = [
   {
     path: '',
@@ -44,6 +45,7 @@ const routes: Routes = [
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
+    SharedModule,
   ],
   providers: [PerformanceService],
 })

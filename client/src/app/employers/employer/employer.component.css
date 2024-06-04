@@ -24,3 +24,9 @@
   height: 100%;
   aspect-ratio: 10/10;
 }
+app-dashboardnavbar {
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+}
+.profile-section {
+  padding-top: 120px;
+}

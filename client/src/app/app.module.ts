@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,8 +26,9 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { ChatbootComponent } from './chatboot/chatboot.component';
-import { DashboardnavbarComponent } from './dashboardnavbar/dashboardnavbar.component';
 import { HomenavbarComponent } from './homenavbar/homenavbar.component';
+import { DashboardnavbarComponent } from './shared/dashboardnavbar/dashboardnavbar.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,6 @@ import { HomenavbarComponent } from './homenavbar/homenavbar.component';
     DashboardComponent,
     HomeComponent,
     ChatbootComponent,
-    DashboardnavbarComponent,
     HomenavbarComponent,
   ],
   imports: [
@@ -55,6 +55,7 @@ import { HomenavbarComponent } from './homenavbar/homenavbar.component';
     MatIconModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule,
   ],
   providers: [
     provideAnimationsAsync(),
@@ -62,5 +63,6 @@ import { HomenavbarComponent } from './homenavbar/homenavbar.component';
     AuthService,
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

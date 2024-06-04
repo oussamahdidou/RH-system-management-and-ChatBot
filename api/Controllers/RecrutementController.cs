@@ -33,7 +33,7 @@ namespace api.Controllers
             return Ok(annonce);
         }
         [HttpPost("Candidature/{AnnonceId:int}")]
-        public async Task<IActionResult> Postuler([FromBody] CreateCandidatureDto createCandidatureDto, [FromRoute] int AnnonceId)
+        public async Task<IActionResult> Postuler([FromForm] CreateCandidatureDto createCandidatureDto, [FromRoute] int AnnonceId)
         {
             Candidature? candidature = await recrutementRepository.Postuler(createCandidatureDto, AnnonceId);
             if (candidature == null)

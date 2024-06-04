@@ -60,9 +60,27 @@ namespace api.Repository
             return candidatures;
         }
 
+        public async Task<Candidature> Integrer(int Id)
+        {
+            Candidature? candidature = await apiDbContext.Candidatures.FirstOrDefaultAsync(x => x.Id == Id);
+            if (candidature == null)
+                return null;
+            else
+            {
+
+                candidature.Status = CandidatureStatus.Integrer;
+
+                await apiDbContext.SaveChangesAsync();
+                return candidature;
+
+            }
+        }
+
         public async Task<Candidature> Postuler(CreateCandidatureDto createCandidatureDto, int AnnonceId)
         {
             Annonce? annonce = await apiDbContext.Annonces.Include(x => x.Candidatures).FirstOrDefaultAsync(x => x.Id == AnnonceId);
+
+
             if (annonce != null && annonce.Candidatures.Count() < annonce.NmbrMax && annonce.Deadline > DateTime.Now)
             {
                 Mail mail = new Mail()
@@ -90,10 +108,13 @@ namespace api.Repository
                         await apiDbContext.SaveChangesAsync();
                         return candidature;
                     }
+                    Console.WriteLine("file probleme");
                     return null;
                 }
+                Console.WriteLine("mail probleme");
                 return null;
             }
+            Console.WriteLine("Annoncenotfound");
             return null;
 
         }
