@@ -345,19 +345,6 @@ export class EmployerComponent implements OnInit {
     });
   }
 
-  // updateSelectState() {
-  //   const datetimeElement = document.getElementById(
-  //     'datetime'
-  //   ) as HTMLInputElement;
-  //   const typeElement = document.getElementById('type') as HTMLSelectElement;
-
-  //   if (datetimeElement.value) {
-  //     typeElement.disabled = false;
-  //   } else {
-  //     typeElement.disabled = true;
-  //   }
-  // }
-
   updateDuree() {
     const datetimeElement = document.getElementById(
       'datetime'

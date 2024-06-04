@@ -44,9 +44,184 @@ export class CandidatureComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
-          title: 'Deleted!',
-          text: 'Your file has been deleted.',
-          icon: 'success',
+          title: 'Waiting...',
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+        this.recrutementservice
+          .refusercandidature(this.candidatureid)
+          .subscribe(
+            (reponse) => {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+            },
+            (error) => {}
+          );
+      }
+    });
+  }
+  selectionner() {
+    Swal.fire({
+      title: 'Entretien DateTime',
+      html: '<input type="datetime-local" id="datetime" class="swal2-input">',
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      preConfirm: () => {
+        const datetime = (
+          document.getElementById('datetime') as HTMLInputElement
+        ).value;
+        if (!datetime) {
+          Swal.showValidationMessage('Please enter a datetime');
+        }
+        return datetime;
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const selectedDatetime = result.value;
+        Swal.fire({
+          title: 'Are you sure?',
+          text: `You selected: ${selectedDatetime}`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, confirm it!',
+          cancelButtonText: 'No, cancel',
+        }).then((confirmationResult) => {
+          if (confirmationResult.isConfirmed) {
+            Swal.fire({
+              title: 'waiting ...',
+              didOpen: () => {
+                Swal.showLoading();
+              },
+            });
+            this.recrutementservice
+              .selectionner(this.candidatureid, selectedDatetime)
+              .subscribe(
+                (response) => {
+                  Swal.fire({
+                    title: 'Success!',
+                    text: 'Your datetime has been confirmed.',
+                    icon: 'success',
+                  });
+                },
+                (error) => {}
+              );
+          }
+        });
+      }
+    });
+  }
+  integrer() {
+    Swal.fire({
+      title: 'Integrate candidat',
+      html: `
+<table>
+<tr>
+     <td>   Date: </td>
+     <td><input type="datetime-local" id="datetime" class="swal2-input"  value="2024-05-28T12:00"></td>
+      </tr>
+      <tr>
+       <td>   poste : </td> 
+       <td>
+        <select id="poste" class="swal2-select" >
+          <option value="Pointeur selected">Pointeur</option>
+          <option value="Manager">Manager</option>
+          <option value="Recruteur" >Recruteur</option>
+          <option value="Devellopeur">Devellopeur</option>
+          <option value="Devops">Devops</option>
+          <option value="Testeur" >Testeur</option>
+          <option value="Chef de projet">Chef de projet</option>
+          <option value="Techlead">Techlead</option>
+          <option value="Product owner">Product owner</option>
+
+        </select>
+        </td>
+        </tr>
+        <tr>
+       <td>   Role : </td> 
+       <td>
+        <select id="role" class="swal2-select" >
+          <option value="Employer" >Employer</option>
+          <option value="Pointeur">Pointeur</option>
+          <option value="Manager">Manager</option>
+          <option value="Recruteur" >Recruteur</option>
+
+        </select>
+        </td>
+        </tr>
+    <tr>
+    <td> Salaire de base dh/h :  </td>
+    <td> <input type="number"  min="77" id="duree" value="50" class="swal2-input">
+     </td>
+     </tr>
+    <tr>
+    <td> Password :  </td>
+    <td> <input type="text"   id="password"  class="swal2-input">
+     </td>
+     </tr>
+
+</table>
+      `,
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      preConfirm: () => {
+        const datetime = (
+          document.getElementById('datetime') as HTMLInputElement
+        ).value;
+
+        const poste = (document.getElementById('poste') as HTMLSelectElement)
+          .value;
+        const role = (document.getElementById('role') as HTMLSelectElement)
+          .value;
+        const duree = (document.getElementById('duree') as HTMLInputElement)
+          .value;
+        const password = (
+          document.getElementById('password') as HTMLInputElement
+        ).value;
+        if (!datetime) {
+          Swal.showValidationMessage('Please enter a datetime');
+        }
+        return { datetime, duree, poste, role, password };
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const value = result.value;
+        Swal.fire({
+          title: 'Are you sure?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, confirm it!',
+          cancelButtonText: 'No, cancel',
+        }).then((confirmationResult) => {
+          if (confirmationResult.isConfirmed) {
+            Swal.fire({
+              title: 'waiting ...',
+              didOpen: () => {
+                Swal.showLoading();
+              },
+            });
+            this.recrutementservice
+              .integrer(
+                this.candidature.id,
+                this.candidature.nom,
+                this.candidature.mail,
+                value.password,
+                value.duree,
+                value.datetime,
+                value.poste,
+                value.role
+              )
+              .subscribe((response) => {
+                Swal.fire({
+                  title: 'Success!',
+                  text: 'the employer has been integrated successfuly',
+                  icon: 'success',
+                });
+              });
+          }
         });
       }
     });

@@ -37,7 +37,7 @@ Voici les détails de votre offre d'emploi :
 - **Date de début :** {model.IntegrationDate.Date}
 - **Salaire :** {model.SalaireDeBase}
 Nous sommes impatients de vous accueillir parmi nous et nous espérons que vous partagerez notre enthousiasme pour ce nouveau défi. Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter à tout moment.
-
+this is your password {model.Password} to integrate our plateforme so you can 
 Dans l'attente de votre réponse positive,
 
 Cordialement,

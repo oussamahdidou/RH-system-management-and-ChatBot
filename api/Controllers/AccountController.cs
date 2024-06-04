@@ -69,6 +69,7 @@ namespace api.Controller
                     SalaireDeBase = model.SalaireDeBase,
                     Poste = model.Poste,
                     IntegrationDate = model.IntegrationDate,
+                    Image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
 
                 };
                 var createuser = await userManager.CreateAsync(appUser, model.Password);

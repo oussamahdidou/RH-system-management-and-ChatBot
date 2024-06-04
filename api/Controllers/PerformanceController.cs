@@ -90,7 +90,7 @@ namespace api.Controllers
         {
             List<AppUser> Users = await userManager.Users.Include(u => u.Heuresupplimentaires)
                                .OrderByDescending(u => u.Heuresupplimentaires.Count)
-                               .Take(5)
+                               .Take(4)
                                .ToListAsync();
             return Ok(Users.Select(x => x.TopSurTempsfromModelToDto()));
 
@@ -100,7 +100,7 @@ namespace api.Controllers
         {
             List<AppUser> Users = await userManager.Users.Include(u => u.Abscences)
                                .OrderByDescending(u => u.Abscences.Count)
-                               .Take(5)
+                               .Take(4)
                                .ToListAsync();
             return Ok(Users.Select(x => x.TopAbscencesfromModelToDto()));
 

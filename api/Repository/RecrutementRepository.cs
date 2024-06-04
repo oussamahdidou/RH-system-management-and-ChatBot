@@ -122,26 +122,30 @@ namespace api.Repository
         public async Task<CandidatureUrgent> Refuser(int Id)
         {
             Candidature? candidature = await apiDbContext.Candidatures.FirstOrDefaultAsync(x => x.Id == Id);
-            Mail mail = new Mail()
+            if (candidature != null)
             {
-                To = candidature.Mail,
-                Subject = "Reponse A votre Candidature",
-                Body = await candidature.Nom.RefueMail()
-            };
-            if (await mail.SendMailAsync(fluentEmail))
-            {
-                CandidatureUrgent candidatureUrgent = new CandidatureUrgent()
+
+                Mail mail = new Mail()
                 {
-                    CV = candidature.CV,
-                    Mail = candidature.Mail,
-                    Nom = candidature.Nom,
-                    Status = candidature.Status,
-                    NumTel = candidature.NumTel,
+                    To = candidature.Mail,
+                    Subject = "Reponse A votre Candidature",
+                    Body = await candidature.Nom.RefueMail()
                 };
-                await apiDbContext.CandidatureUrgents.AddAsync(candidatureUrgent);
-                candidature.Status = CandidatureStatus.Refuser;
-                await apiDbContext.SaveChangesAsync();
-                return candidatureUrgent;
+                if (await mail.SendMailAsync(fluentEmail))
+                {
+                    CandidatureUrgent candidatureUrgent = new CandidatureUrgent()
+                    {
+                        CV = candidature.CV,
+                        Mail = candidature.Mail,
+                        Nom = candidature.Nom,
+                        Status = candidature.Status,
+                        NumTel = candidature.NumTel,
+                    };
+                    await apiDbContext.CandidatureUrgents.AddAsync(candidatureUrgent);
+                    candidature.Status = CandidatureStatus.Refuser;
+                    await apiDbContext.SaveChangesAsync();
+                    return candidatureUrgent;
+                }
             }
             return null;
         }

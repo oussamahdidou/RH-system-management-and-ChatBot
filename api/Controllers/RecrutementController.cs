@@ -43,13 +43,13 @@ namespace api.Controllers
         [HttpGet("Refuser/{Id:int}")]
         public async Task<IActionResult> Refuser([FromRoute] int Id)
         {
-            CandidatureUrgent candidatureUrgent = await recrutementRepository.Refuser(Id);
+            CandidatureUrgent? candidatureUrgent = await recrutementRepository.Refuser(Id);
             if (candidatureUrgent == null)
                 return BadRequest("something went wrong");
             return Ok(candidatureUrgent);
         }
         [HttpPost("Selectionner")]
-        public async Task<IActionResult> Selectionner([FromRoute] CreateEntretien createEntretien)
+        public async Task<IActionResult> Selectionner([FromBody] CreateEntretien createEntretien)
         {
             Candidature? candidature = await recrutementRepository.Selectionner(createEntretien.Id, createEntretien.dateTime);
             if (candidature == null)

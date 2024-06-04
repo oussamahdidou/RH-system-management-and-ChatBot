@@ -20,4 +20,37 @@ export class RecrutementService {
       `http://localhost:5111/api/Recrutement/Candidature/${id}`
     );
   }
+  refusercandidature(id: number): Observable<any> {
+    return this.http.get(`http://localhost:5111/api/Recrutement/Refuser/${id}`);
+  }
+  selectionner(id: number, date: any): Observable<any> {
+    return this.http.post(
+      `http://localhost:5111/api/Recrutement/Selectionner`,
+      {
+        id: id,
+        dateTime: date,
+      }
+    );
+  }
+  integrer(
+    id: any,
+    username: any,
+    emailAddress: any,
+    password: any,
+    salaireDeBase: any,
+    integrationDate: any,
+    poste: any,
+    role: any
+  ): Observable<any> {
+    return this.http.post(`http://localhost:5111/api/Account/Register/User`, {
+      id: id,
+      username: username,
+      emailAddress: emailAddress,
+      password: password,
+      salaireDeBase: salaireDeBase,
+      integrationDate: integrationDate,
+      poste: poste,
+      role: role,
+    });
+  }
 }
