@@ -5,6 +5,7 @@
   position: fixed;
   left: 0;
   top: 0;
+  background: rgb(70, 38, 206);
 }
 .icon {
   cursor: pointer;

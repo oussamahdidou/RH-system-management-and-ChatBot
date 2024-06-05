@@ -44,6 +44,10 @@ export class AuthService {
       this._$isLoggedin.next(false);
     }
   }
+  getuserid() {
+    const id = this.getUser(this.jwt).unique_name;
+    return id;
+  }
   getUser(token: string) {
     return JSON.parse(atob(token.split('.')[1]));
   }

@@ -38,7 +38,6 @@ const routes: Routes = [
     path: 'employers',
     loadChildren: () =>
       import('./employers/employers.module').then((m) => m.EmployersModule),
-    canActivate: [rhserviceGuard],
   },
   {
     path: 'recrutement',

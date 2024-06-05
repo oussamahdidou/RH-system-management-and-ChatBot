@@ -14,7 +14,7 @@ export const rhserviceGuard: CanActivateFn = () => {
     authService.$Recruteur,
   ]).pipe(
     map(([isLoggedin, isManager, isPointeur, isRecruteur]) => {
-      if (isLoggedin || isManager || isPointeur || isRecruteur) {
+      if (isManager || isPointeur || isRecruteur) {
         return true;
       } else {
         return router.createUrlTree(['/auth/login']);
