@@ -7,6 +7,7 @@ import { authGuard } from './guards/auth.guard';
 import { rhserviceGuard } from './guards/rhservice.guard';
 import { recruteurGuard } from './guards/recruteur.guard';
 import { ChatbootComponent } from './chatboot/chatboot.component';
+import { ListOfferComponent } from './list-offer/list-offer.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'AI',
     component: ChatbootComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'offers',
+    component: ListOfferComponent,
     pathMatch: 'full',
   },
   {
@@ -45,7 +51,6 @@ const routes: Routes = [
       import('./recrutement/recrutement.module').then(
         (m) => m.RecrutementModule
       ),
-    canActivate: [recruteurGuard],
   },
   { path: '**', component: NotFoundComponent },
 ];

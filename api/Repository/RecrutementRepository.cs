@@ -60,6 +60,11 @@ namespace api.Repository
             return candidatures;
         }
 
+        public async Task<List<Annonce>> GetDisponibleAnnonces()
+        {
+            return await apiDbContext.Annonces.Include(x => x.Candidatures).Where(x => x.Candidatures.Count() < x.NmbrMax && x.Deadline > DateTime.Now).ToListAsync();
+        }
+
         public async Task<Candidature> Integrer(int Id)
         {
             Candidature? candidature = await apiDbContext.Candidatures.FirstOrDefaultAsync(x => x.Id == Id);

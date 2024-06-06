@@ -32,6 +32,16 @@ export class RecrutementService {
       }
     );
   }
+  getjobs(): Observable<any> {
+    return this.http.get(`http://localhost:5111/api/Recrutement/Jobs`);
+  }
+  postuler(id: number, form: any): Observable<any> {
+    return this.http.post(
+      `http://localhost:5111
+/api/Recrutement/Candidature/${id}`,
+      form
+    );
+  }
   integrer(
     id: any,
     username: any,

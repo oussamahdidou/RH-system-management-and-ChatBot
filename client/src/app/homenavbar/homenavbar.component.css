@@ -1,6 +1,6 @@
 .nav-container {
-  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
-  position: sticky;
-  left: 0;
-  top: 0;
+  color: white;
+  background: rgb(70, 38, 206);
+
+  z-index: 999;
 }

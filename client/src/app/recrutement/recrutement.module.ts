@@ -14,14 +14,28 @@ import { MatTableModule } from '@angular/material/table';
 import { RecrutementService } from '../services/recrutement.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { recruteurGuard } from '../guards/recruteur.guard';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      { path: 'annonces', component: ListAnnonceComponent },
-      { path: 'annonce/:id', component: AnnonceComponent },
-      { path: 'candidature/:id', component: CandidatureComponent },
+      {
+        path: 'annonces',
+        component: ListAnnonceComponent,
+        canActivate: [recruteurGuard],
+      },
+      {
+        path: 'annonce/:id',
+        component: AnnonceComponent,
+        canActivate: [recruteurGuard],
+      },
+      {
+        path: 'candidature/:id',
+        component: CandidatureComponent,
+        canActivate: [recruteurGuard],
+      },
       { path: 'postule/:id', component: PostuleComponent },
     ],
   },
@@ -45,6 +59,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     HttpClientModule,
     SharedModule,
+    ReactiveFormsModule,
   ],
   providers: [RecrutementService],
 })

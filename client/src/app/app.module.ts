@@ -29,6 +29,8 @@ import { ChatbootComponent } from './chatboot/chatboot.component';
 import { HomenavbarComponent } from './homenavbar/homenavbar.component';
 import { DashboardnavbarComponent } from './shared/dashboardnavbar/dashboardnavbar.component';
 import { SharedModule } from './shared/shared.module';
+import { ListOfferComponent } from './list-offer/list-offer.component';
+import { RecrutementService } from './services/recrutement.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { SharedModule } from './shared/shared.module';
     HomeComponent,
     ChatbootComponent,
     HomenavbarComponent,
+    ListOfferComponent,
   ],
   imports: [
     BaseChartDirective,
@@ -61,6 +64,7 @@ import { SharedModule } from './shared/shared.module';
     provideAnimationsAsync(),
     provideCharts(withDefaultRegisterables()),
     AuthService,
+    RecrutementService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

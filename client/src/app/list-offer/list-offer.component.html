@@ -1,0 +1,25 @@
+<app-homenavbar></app-homenavbar>
+<div class="offers-page container-fluid py-5">
+  <div class="container py-5">
+    <h6 class="fw-bold">List of Disponible Job Offers :</h6>
+    <div class="d-flex flex-column justify-content-center gap-3">
+      @for (item of items; track $index) {
+      <div
+        class="py-3 px-5 bg-white d-flex justify-content-between job-content align-items-center"
+      >
+        <div>
+          <h5>{{ item.titre }}</h5>
+          <p>
+            {{ item.description }}
+          </p>
+        </div>
+        <div class="ps-5">
+          <button routerLink="/recrutement/postule/{{ item.id }}">
+            Explore
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

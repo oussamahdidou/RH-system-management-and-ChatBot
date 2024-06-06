@@ -81,6 +81,11 @@ namespace api.Controllers
             }
             return Ok(candidature);
         }
+        [HttpGet("Jobs")]
+        public async Task<IActionResult> GetJobs()
+        {
+            return Ok(await recrutementRepository.GetDisponibleAnnonces());
+        }
     }
 
 }

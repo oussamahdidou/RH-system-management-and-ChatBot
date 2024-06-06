@@ -1,0 +1,16 @@
+.offers-page {
+  background-color: aliceblue;
+  min-height: 100%;
+}
+.job-content {
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+button {
+  width: 120px;
+  height: 50px;
+  outline: none;
+  border: none;
+  background-color: black;
+  color: white;
+}

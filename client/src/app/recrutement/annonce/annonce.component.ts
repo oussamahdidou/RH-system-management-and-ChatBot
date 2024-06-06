@@ -23,12 +23,14 @@ export class AnnonceComponent implements OnInit {
   ) {
     this.dataSource = new MatTableDataSource();
   }
-
+  annonce: any;
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.annonceid = params['id'];
       this.recrutementservice.listcandidature(this.annonceid).subscribe(
         (response) => {
+          this.annonce = response;
+          console.log(response);
           this.offers = response.candidatures;
           this.dataSource = new MatTableDataSource(this.offers);
 
