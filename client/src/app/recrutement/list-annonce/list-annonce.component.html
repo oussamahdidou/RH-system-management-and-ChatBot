@@ -1,10 +1,19 @@
 <app-dashboardnavbar class="mb-5"></app-dashboardnavbar>
 <div class="container">
-  <mat-form-field>
-    <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Titre" />
-  </mat-form-field>
-
+  <div class="mb-4 d-flex justify-content-between align-items-center px-4">
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Titre" />
+    </mat-form-field>
+    <button
+      routerLink="/recrutement/createannonce"
+      mat-raised-button
+      color="primary"
+    >
+      <mat-icon>add</mat-icon>
+      Ajouter Annonce
+    </button>
+  </div>
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <!-- Titre Column -->
     <ng-container matColumnDef="titre">

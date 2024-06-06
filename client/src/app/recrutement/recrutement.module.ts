@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { recruteurGuard } from '../guards/recruteur.guard';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreateannonceComponent } from './createannonce/createannonce.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
         canActivate: [recruteurGuard],
       },
       { path: 'postule/:id', component: PostuleComponent },
+      { path: 'createannonce', component: CreateannonceComponent },
     ],
   },
 ];
@@ -47,6 +49,7 @@ const routes: Routes = [
     AnnonceComponent,
     CandidatureComponent,
     PostuleComponent,
+    CreateannonceComponent,
   ],
   imports: [
     CommonModule,

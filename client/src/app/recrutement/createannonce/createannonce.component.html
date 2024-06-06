@@ -1,0 +1,38 @@
+<div class="container h-100 d-flex justify-content-center align-items-center">
+  <form [formGroup]="applicationForm" (ngSubmit)="onsubmit()" class="form px-5">
+    <p class="form-title">Application Form</p>
+
+    <div class="input-container">
+      <input formControlName="titre" placeholder="titre" type="text" required />
+    </div>
+
+    <div class="input-container">
+      <textarea
+        formControlName="description"
+        placeholder="description"
+        required
+      ></textarea>
+    </div>
+
+    <div class="input-container">
+      <input
+        formControlName="nmbrmax"
+        placeholder="nmbrmax"
+        type="number"
+        min="7"
+        required
+      />
+    </div>
+
+    <div class="input-container">
+      <input
+        formControlName="deadline"
+        placeholder="deadline"
+        type="datetime-local"
+        required
+      />
+    </div>
+
+    <button class="submit" type="submit">Apply</button>
+  </form>
+</div>

@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './annonce.component.css',
 })
 export class AnnonceComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'email', 'phone', 'more'];
+  displayedColumns: string[] = ['nom', 'mail', 'numTel', 'more'];
   dataSource: MatTableDataSource<any>;
 
   offers: any[] = [];
@@ -33,7 +33,12 @@ export class AnnonceComponent implements OnInit {
           console.log(response);
           this.offers = response.candidatures;
           this.dataSource = new MatTableDataSource(this.offers);
-
+          this.dataSource.sortingDataAccessor = (item, property) => {
+            switch (property) {
+              default:
+                return item[property];
+            }
+          };
           this.dataSource.sort = this.sort;
         },
         (error) => {}
