@@ -42,6 +42,13 @@ export class RecrutementService {
       form
     );
   }
+  createannonce(annonce: any): Observable<any> {
+    return this.http.post(
+      `
+http://localhost:5111/api/Recrutement/Annonce`,
+      annonce
+    );
+  }
   integrer(
     id: any,
     username: any,

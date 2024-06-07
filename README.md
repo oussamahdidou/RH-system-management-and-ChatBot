@@ -1,6 +1,6 @@
 ## About
 
-This project is a [brief description of your project]. It [explains what problem it solves or what purpose it serves]. 
+This project is a [brief description of your project]. It [explains what problem it solves or what purpose it serves].
 
 ### Key Features
 
@@ -11,6 +11,7 @@ This project is a [brief description of your project]. It [explains what problem
 ### How to Contribute
 
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
 1. Fork this repository.
 2. Create a new branch (`git checkout -b feature/your-feature-name`).
 3. Commit your changes (`git commit -am 'Add new feature'`).

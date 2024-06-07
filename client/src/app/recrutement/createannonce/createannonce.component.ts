@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecrutementService } from '../../services/recrutement.service';
 import Swal from 'sweetalert2';
 
@@ -14,6 +14,7 @@ export class CreateannonceComponent implements OnInit {
   constructor(
     private readonly recrutementservice: RecrutementService,
     private readonly route: ActivatedRoute,
+    private readonly router: Router,
     private fb: FormBuilder
   ) {}
 
@@ -30,7 +31,23 @@ export class CreateannonceComponent implements OnInit {
     if (this.applicationForm.valid) {
       const formData = this.applicationForm.value;
       console.log('Form Data:', formData);
-      // Save the formData object as needed
+      Swal.fire({
+        title: 'Do you want to create this offer ?',
+
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.recrutementservice.createannonce(formData).subscribe(
+            (response) => {
+              Swal.fire('Saved!', '', 'success');
+              this.router.navigate(['/recrutement/annonces']);
+            },
+            (error) => {}
+          );
+        }
+      });
     } else {
       console.log('Form is invalid');
     }

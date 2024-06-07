@@ -1,5 +1,4 @@
 .offers-page {
-  background-color: aliceblue;
   min-height: 100%;
 }
 .job-content {
@@ -13,4 +12,22 @@ button {
   border: none;
   background-color: black;
   color: white;
+}
+.signin {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+}
+p {
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+h1 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+p {
+  font-family: MuseoSans300Regular, sans-serif;
+}
+img {
+  width: 75%;
 }

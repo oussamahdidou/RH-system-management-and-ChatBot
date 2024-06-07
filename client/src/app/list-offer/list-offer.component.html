@@ -1,15 +1,49 @@
-<app-homenavbar></app-homenavbar>
-<div class="offers-page container-fluid py-5">
+<!-- <app-homenavbar></app-homenavbar> -->
+<div class="container d-flex justify-content-center align-items-center">
+  <div
+    class="container d-flex justify-content-end align-items-center py-3 px-5"
+  >
+    <p class="mx-4" routerLink="/">Home</p>
+    <p class="mx-4" routerLink="/AI">ChatBot</p>
+    <p class="mx-4" routerLink="/">About</p>
+    <p class="mx-4 signin px-3 py-2 text-white" routerLink="/auth/login">
+      Signin
+    </p>
+  </div>
+</div>
+<div class="offers-page container-fluid px-0">
+  <div class="container-fluid mx-0">
+    <div class="container py-5 row">
+      <div class="col-lg-6 pt-5 ps-5">
+        <h1 class="ps-5">Discover Exciting Job Offers</h1>
+        <p class="ps-5">
+          this is our carreers page where you can discover our job offers and
+          apply
+        </p>
+      </div>
+      <div class="col-lg-6 d-flex justify-content-end">
+        <img src="../../assets/img/Hiring-amico.svg" alt="" />
+      </div>
+    </div>
+  </div>
   <div class="container py-5">
-    <h6 class="fw-bold">List of Disponible Job Offers :</h6>
+    <div
+      class="container d-flex justify-content-between align-items-center pb-4"
+    >
+      <h6 class="">{{ filtreditems.length }} Job Offers Found:</h6>
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. name" />
+      </mat-form-field>
+    </div>
     <div class="d-flex flex-column justify-content-center gap-3">
-      @for (item of items; track $index) {
+      @for (item of filtreditems; track $index) {
       <div
         class="py-3 px-5 bg-white d-flex justify-content-between job-content align-items-center"
       >
         <div>
           <h5>{{ item.titre }}</h5>
-          <p>
+          <p class="text-justify">
             {{ item.description }}
           </p>
         </div>

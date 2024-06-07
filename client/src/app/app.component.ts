@@ -24,7 +24,9 @@ export class AppComponent implements OnInit {
         this.showComponent = !(
           this.isAuthRoute(event.url) ||
           this.isHomeRoute(event.url) ||
-          this.isAIRoute(event.url)
+          this.isAIRoute(event.url) ||
+          this.isPostuleRoute(event.url) ||
+          event.url === '/offers'
         );
       }
     });
@@ -33,7 +35,9 @@ export class AppComponent implements OnInit {
   private isAuthRoute(url: string): boolean {
     return url.startsWith('/auth');
   }
-
+  private isPostuleRoute(url: string): Boolean {
+    return url.startsWith('/recrutement/postule');
+  }
   private isHomeRoute(url: string): boolean {
     return url === '/' || url.startsWith('/#');
   }
