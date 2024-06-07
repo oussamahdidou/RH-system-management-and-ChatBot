@@ -54,10 +54,11 @@ export class CandidatureComponent implements OnInit {
           .subscribe(
             (reponse) => {
               Swal.fire({
-                title: 'Deleted!',
-                text: 'Your file has been deleted.',
+                title: 'Refused!',
+                text: 'La candidature et refuser successfuly.',
                 icon: 'success',
               });
+              this.candidature.status = `Refuser`;
             },
             (error) => {}
           );
@@ -103,9 +104,10 @@ export class CandidatureComponent implements OnInit {
                 (response) => {
                   Swal.fire({
                     title: 'Success!',
-                    text: 'Your datetime has been confirmed.',
+                    text: 'Your Entretien has been confirmed.',
                     icon: 'success',
                   });
+                  this.candidature.status = `Selectionner`;
                 },
                 (error) => {}
               );
@@ -220,6 +222,7 @@ export class CandidatureComponent implements OnInit {
                   text: 'the employer has been integrated successfuly',
                   icon: 'success',
                 });
+                this.candidature.status = `Integrer`;
               });
           }
         });

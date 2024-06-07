@@ -170,7 +170,7 @@ export class EmployerComponent implements OnInit {
   }
   addabscence() {
     Swal.fire({
-      title: 'Select a datetime',
+      title: 'Signaler une abscence',
       html: '<input type="datetime-local" id="datetime" class="swal2-input">',
       showCancelButton: true,
       confirmButtonText: 'OK',
@@ -215,7 +215,7 @@ export class EmployerComponent implements OnInit {
   }
   addsurtemps() {
     Swal.fire({
-      title: 'Select a datetime',
+      title: 'SIgnaler Surtemps',
       html: '<input type="datetime-local" id="datetime" class="swal2-input">',
       showCancelButton: true,
       confirmButtonText: 'OK',
@@ -261,7 +261,7 @@ export class EmployerComponent implements OnInit {
 
   displaymodal() {
     Swal.fire({
-      title: 'Select a datetime',
+      title: 'Demande de Conges',
       html: `
 <table>
 <tr>
@@ -335,7 +335,7 @@ export class EmployerComponent implements OnInit {
               .subscribe((response) => {
                 Swal.fire({
                   title: 'Success!',
-                  text: 'Your datetime has been confirmed.',
+                  text: 'Ta demander est bien envoyer',
                   icon: 'success',
                 });
               });

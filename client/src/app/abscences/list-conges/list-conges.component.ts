@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PerformanceService } from '../../services/performance.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-conges',
@@ -54,22 +55,68 @@ export class ListCongesComponent implements OnInit {
   }
 
   approve(ong: any) {
-    this.performanceservice.approuver(ong.id).subscribe(
-      (response) => {
-        ong.status = 'Approuver';
-        this.dataSource.data = [...this.ongs];
-      },
-      (error) => {}
-    );
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'waiting ...',
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+        this.performanceservice.approuver(ong.id).subscribe(
+          (response) => {
+            ong.status = 'Approuver';
+            this.dataSource.data = [...this.ongs];
+            Swal.fire({
+              title: 'Approuved!',
+              text: 'Conges approuver.',
+              icon: 'success',
+            });
+          },
+          (error) => {}
+        );
+      }
+    });
   }
 
   reject(ong: any) {
-    this.performanceservice.refuser(ong.id).subscribe(
-      (response) => {
-        ong.status = 'Refuser';
-        this.dataSource.data = [...this.ongs];
-      },
-      (error) => {}
-    );
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'waiting ...',
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+        this.performanceservice.refuser(ong.id).subscribe(
+          (response) => {
+            ong.status = 'Refuser';
+            this.dataSource.data = [...this.ongs];
+            Swal.fire({
+              title: 'Conges!',
+              text: 'Rejected successfuly',
+              icon: 'success',
+            });
+          },
+          (error) => {}
+        );
+      }
+    });
   }
 }

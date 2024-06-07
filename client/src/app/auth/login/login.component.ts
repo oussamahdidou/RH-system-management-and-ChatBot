@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,11 @@ export class LoginComponent {
         }`;
       },
       (error) => {
-        console.log(error);
+        Swal.fire({
+          title: 'Error',
+          text: `${error.error}`,
+          icon: 'error',
+        });
       }
     );
   }

@@ -20,7 +20,9 @@ export class ListOfferComponent implements OnInit {
     );
   }
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    const filterValue = this.normalizeString(
+      (event.target as HTMLInputElement).value.toLowerCase()
+    );
     console.log(filterValue);
 
     if (filterValue === '') {
@@ -28,10 +30,17 @@ export class ListOfferComponent implements OnInit {
     } else {
       this.filtreditems = this.items.filter((item) => {
         return (
-          item.titre.toLowerCase().includes(filterValue) ||
-          item.description.toLowerCase().includes(filterValue)
+          this.normalizeString(item.titre.toLowerCase()).includes(
+            filterValue
+          ) ||
+          this.normalizeString(item.description.toLowerCase()).includes(
+            filterValue
+          )
         );
       });
     }
+  }
+  normalizeString(str: string): string {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 }
