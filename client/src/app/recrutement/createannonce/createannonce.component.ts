@@ -44,7 +44,13 @@ export class CreateannonceComponent implements OnInit {
               Swal.fire('Saved!', '', 'success');
               this.router.navigate(['/recrutement/annonces']);
             },
-            (error) => {}
+            (error) => {
+              Swal.fire({
+                title: 'Error',
+                text: `${error.error}`,
+                icon: 'error',
+              });
+            }
           );
         }
       });

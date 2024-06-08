@@ -60,7 +60,13 @@ export class CandidatureComponent implements OnInit {
               });
               this.candidature.status = `Refuser`;
             },
-            (error) => {}
+            (error) => {
+              Swal.fire({
+                title: 'Error',
+                text: `${error.error}`,
+                icon: 'error',
+              });
+            }
           );
       }
     });
@@ -109,7 +115,13 @@ export class CandidatureComponent implements OnInit {
                   });
                   this.candidature.status = `Selectionner`;
                 },
-                (error) => {}
+                (error) => {
+                  Swal.fire({
+                    title: 'Error',
+                    text: `${error.error}`,
+                    icon: 'error',
+                  });
+                }
               );
           }
         });
@@ -216,14 +228,23 @@ export class CandidatureComponent implements OnInit {
                 value.poste,
                 value.role
               )
-              .subscribe((response) => {
-                Swal.fire({
-                  title: 'Success!',
-                  text: 'the employer has been integrated successfuly',
-                  icon: 'success',
-                });
-                this.candidature.status = `Integrer`;
-              });
+              .subscribe(
+                (response) => {
+                  Swal.fire({
+                    title: 'Success!',
+                    text: 'the employer has been integrated successfuly',
+                    icon: 'success',
+                  });
+                  this.candidature.status = `Integrer`;
+                },
+                (error) => {
+                  Swal.fire({
+                    title: 'Error',
+                    text: `${error.error}`,
+                    icon: 'error',
+                  });
+                }
+              );
           }
         });
       }

@@ -3,6 +3,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RecrutementService } from '../../services/recrutement.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-annonce',
@@ -41,7 +42,13 @@ export class AnnonceComponent implements OnInit {
           };
           this.dataSource.sort = this.sort;
         },
-        (error) => {}
+        (error) => {
+          Swal.fire({
+            title: 'Error',
+            text: `${error.error}`,
+            icon: 'error',
+          });
+        }
       );
     });
   }

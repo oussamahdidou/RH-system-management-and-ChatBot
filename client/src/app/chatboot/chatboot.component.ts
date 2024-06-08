@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ChatbootService } from '../services/chatboot.service';
 import Typed from 'typed.js';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-chatboot',
   templateUrl: './chatboot.component.html',
@@ -29,7 +30,13 @@ export class ChatbootComponent implements OnInit, AfterViewInit {
           const typed = new Typed('#typed-output', options);
           this.input = '';
         },
-        (error) => {}
+        (error) => {
+          Swal.fire({
+            title: 'Error',
+            text: `${error.error}`,
+            icon: 'error',
+          });
+        }
       );
     }
   }

@@ -118,7 +118,13 @@ export class EmployerComponent implements OnInit {
         (response) => {
           this.Employer = response;
         },
-        (error) => {}
+        (error) => {
+          Swal.fire({
+            title: 'Error',
+            text: `${error.error}`,
+            icon: 'error',
+          });
+        }
       );
     }
   }
@@ -201,7 +207,13 @@ export class EmployerComponent implements OnInit {
                 (response) => {
                   console.log(response);
                 },
-                (error) => {}
+                (error) => {
+                  Swal.fire({
+                    title: 'Error',
+                    text: `${error.error}`,
+                    icon: 'error',
+                  });
+                }
               );
             Swal.fire({
               title: 'Success!',
@@ -246,7 +258,13 @@ export class EmployerComponent implements OnInit {
                 (response) => {
                   console.log(response);
                 },
-                (error) => {}
+                (error) => {
+                  Swal.fire({
+                    title: 'Error',
+                    text: `${error.error}`,
+                    icon: 'error',
+                  });
+                }
               );
             Swal.fire({
               title: 'Success!',
@@ -332,13 +350,22 @@ export class EmployerComponent implements OnInit {
                 selectedDatetime.duree,
                 selectedDatetime.type
               )
-              .subscribe((response) => {
-                Swal.fire({
-                  title: 'Success!',
-                  text: 'Ta demander est bien envoyer',
-                  icon: 'success',
-                });
-              });
+              .subscribe(
+                (response) => {
+                  Swal.fire({
+                    title: 'Success!',
+                    text: 'Ta demander est bien envoyer',
+                    icon: 'success',
+                  });
+                },
+                (error) => {
+                  Swal.fire({
+                    title: 'Error',
+                    text: `${error.error}`,
+                    icon: 'error',
+                  });
+                }
+              );
           }
         });
       }

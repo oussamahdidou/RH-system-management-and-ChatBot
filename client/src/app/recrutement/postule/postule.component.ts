@@ -72,8 +72,8 @@ export class PostuleComponent {
         },
         (error) => {
           Swal.fire({
-            title: 'warning!',
-            text: 'something went wrong',
+            title: 'Error',
+            text: `${error.error}`,
             icon: 'error',
           });
         }
