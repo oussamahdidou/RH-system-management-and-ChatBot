@@ -161,6 +161,35 @@ namespace api.Controller
                 return StatusCode(500, "An error occurred while processing the request.");
             }
         }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteUser([FromRoute] string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest("User ID cannot be null or empty.");
+            }
 
+            // Find the user by their ID
+            var user = await userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            // Delete the user
+            var result = await userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                return Ok("User deleted successfully.");
+            }
+
+            // Handle errors
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return BadRequest(ModelState);
+        }
     }
 }

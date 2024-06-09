@@ -69,4 +69,7 @@ export class EmployerService {
       headers: this.authservice.headers,
     });
   }
+  deleteaccount(id: any): Observable<any> {
+    return this.http.delete(`http://localhost:5111/api/Account/${id}`);
+  }
 }
