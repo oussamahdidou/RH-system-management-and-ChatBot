@@ -390,7 +390,13 @@ export class EmployerComponent implements OnInit {
               icon: 'success',
             });
           },
-          (error) => {}
+          (error) => {
+            Swal.fire({
+              title: `Error`,
+              text: `${error.error}`,
+              icon: 'error',
+            });
+          }
         );
       }
     });
