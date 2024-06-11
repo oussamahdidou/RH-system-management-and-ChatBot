@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecrutementService } from '../services/recrutement.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-list-offer',
@@ -7,7 +8,10 @@ import { RecrutementService } from '../services/recrutement.service';
   styleUrl: './list-offer.component.css',
 })
 export class ListOfferComponent implements OnInit {
-  constructor(private readonly recrutementservice: RecrutementService) {}
+  constructor(
+    private readonly recrutementservice: RecrutementService,
+    public readonly authservice: AuthService
+  ) {}
   items: any[] = [];
   filtreditems: any[] = [];
   ngOnInit(): void {

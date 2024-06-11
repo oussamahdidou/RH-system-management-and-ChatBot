@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatbootService } from '../services/chatboot.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,4 +10,5 @@ import { ChatbootService } from '../services/chatboot.service';
 export class HomeComponent implements OnInit {
   output = '';
   ngOnInit(): void {}
+  constructor(public readonly authservice: AuthService) {}
 }
