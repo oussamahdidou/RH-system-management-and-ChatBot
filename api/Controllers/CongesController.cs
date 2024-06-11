@@ -30,7 +30,16 @@ namespace api.Controllers
 
             return Ok(await congesRepository.CongesAnnuelleAuthorisee(EmployerId));
         }
-
+        [HttpGet("Approuver/{id:int}")]
+        public async Task<IActionResult> Approuver([FromRoute] int id)
+        {
+            return Ok(await congesRepository.ApprouverConges(id));
+        }
+        [HttpGet("Refuser/{id:int}")]
+        public async Task<IActionResult> Refuser([FromRoute] int id)
+        {
+            return Ok(await congesRepository.RefuserConges(id));
+        }
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> DemanderConges([FromBody] CreateCongesDto createCongesDto)
@@ -52,15 +61,6 @@ namespace api.Controllers
         {
             return Ok(await congesRepository.GetConges());
         }
-        [HttpGet("Approuver/{id:int}")]
-        public async Task<IActionResult> Approuver([FromRoute] int id)
-        {
-            return Ok(await congesRepository.ApprouverConges(id));
-        }
-        [HttpGet("Refuser/{id:int}")]
-        public async Task<IActionResult> Refuser([FromRoute] int id)
-        {
-            return Ok(await congesRepository.RefuserConges(id));
-        }
+
     }
 }
