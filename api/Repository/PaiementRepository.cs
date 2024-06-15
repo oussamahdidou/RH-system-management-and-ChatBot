@@ -30,7 +30,7 @@ namespace api.Repository
 
         public async Task CreatePaiements()
         {
-            List<AppUser> appUsers = await userManager.Users
+            List<AppUser> appUsers = await userManager.Users.Where(x => x.IntegrationDate.AddMonths(1) <= DateTime.Now)
                                                       .Include(x => x.Abscences)
                                                       .Include(x => x.Heuresupplimentaires)
                                                       .ToListAsync();
