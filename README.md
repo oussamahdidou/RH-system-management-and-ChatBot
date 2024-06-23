@@ -134,9 +134,3 @@ To run the entire application, you need to have all three components (backend, f
 
 Now, you should be able to access the full application by navigating to `http://localhost:4200` in your web browser.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
-
-This Markdown code will generate the README with the specified instructions and formatting. Adjust the repository URL and other specifics as necessary for your actual project.
