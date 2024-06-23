@@ -71,7 +71,7 @@ First, clone the repository from GitHub:
 
 ```bash
 git clone https://github.com/oussamahdidou/RH-system-management-and-ChatBot.git
-cd rh-management-system
+cd RH-system-management-and-ChatBot
 ```
 
 ## Backend Setup (ASP.NET Core 8)
