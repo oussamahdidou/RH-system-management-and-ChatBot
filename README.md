@@ -8,7 +8,43 @@ This repository contains a complete RH (Resource Handling) management system, wh
 - **ASP.NET Core 8 Web API** for the backend.
 - **Angular 18** for the frontend.
 - **Flask-based Chatbot** for additional functionality.
+## Preview
 
+Here are some screenshots of the application:
+
+<div align="center">
+    <img src="readme/annoncecandidatures.png" alt="Annonce Candidatures" width="400" />
+    <img src="readme/candidaturepage.png" alt="Candidature Page" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/carreerspage.png" alt="Careers Page" width="400" />
+    <img src="readme/chatbot.png" alt="Chatbot" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/createannonce.png" alt="Create Annonce" width="400" />
+    <img src="readme/dashboard.png" alt="Dashboard" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/demandeconges.png" alt="Demande Conges" width="400" />
+    <img src="readme/demandecongesss.png" alt="Demande Conges 2" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/homepage.png" alt="Homepage" width="400" />
+    <img src="readme/lesdemande.png" alt="Les Demandes" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/postulepage.png" alt="Postule Page" width="400" />
+    <img src="readme/profilepage.png" alt="Profile Page" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/swaggerui.png" alt="Swagger UI" width="400" />
+</div>
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
