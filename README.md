@@ -34,7 +34,7 @@ Before you start, make sure you have the following installed:
 First, clone the repository from GitHub:
 
 ```bash
-git clone https://github.com/your-username/rh-management-system.git
+git clone https://github.com/oussamahdidou/RH-system-management-and-ChatBot.git
 cd rh-management-system
 ```
 
@@ -43,7 +43,7 @@ cd rh-management-system
 1. Navigate to the `backend` directory:
 
     ```bash
-    cd backend
+    cd api
     ```
 
 2. Restore the .NET dependencies:
@@ -70,14 +70,14 @@ cd rh-management-system
     dotnet run
     ```
 
-The backend should now be running on `https://localhost:5001`.
+The backend should now be running on `https://localhost:5111`.
 
 ## Frontend Setup (Angular 18)
 
 1. Navigate to the `frontend` directory:
 
     ```bash
-    cd ../frontend
+    cd ../client
     ```
 
 2. Install the Angular dependencies:
