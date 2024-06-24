@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Conges;
+using api.generique;
 using api.Model;
 
 namespace api.interfaces
 {
     public interface ICongesRepository
     {
-        Task<Conges> DemaderConger(CreateCongesDto createConges, string EmployerId);
-        Task<Conges> ApprouverConges(int CongesId);
-        Task<Conges> RefuserConges(int CongesId);
+        Task<Result<Conges>> DemaderConger(CreateCongesDto createConges, string EmployerId);
+        Task<Result<Conges>> ApprouverConges(int CongesId);
+        Task<Result<Conges>> RefuserConges(int CongesId);
         Task<bool> EnConges(EnCongesDto enCongesDto);
         Task<int> CongesAnnuelleAuthorisee(string EmployerId);
-        Task<List<GetCongesDto>> GetConges();
+        Task<Result<List<GetCongesDto>>> GetConges();
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using api.Data;
 using api.Dtos.Conges;
 using api.extensions;
+using api.generique;
 using api.helpers;
 using api.interfaces;
 using api.Model;
@@ -22,12 +23,12 @@ namespace api.Repository
             this.apiDbContext = apiDbContext;
             this.fluentEmail = fluentEmail;
         }
-        public async Task<Conges> ApprouverConges(int CongesId)
+        public async Task<Result<Conges>> ApprouverConges(int CongesId)
         {
             Conges? conges = await apiDbContext.Conges.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.Id == CongesId);
             if (conges == null)
             {
-                return null;
+                return Result<Conges>.Failure("Conges not found");
             }
             conges.Status = CongesStatus.Approuver;
             await apiDbContext.SaveChangesAsync();
@@ -38,10 +39,10 @@ namespace api.Repository
                 Subject = "Acceptation de Demande de Conges"
             };
             await mail.SendMailAsync(fluentEmail);
-            return conges;
+            return Result<Conges>.Success(conges);
         }
 
-        public async Task<Conges> DemaderConger(CreateCongesDto createConges, string EmployerId)
+        public async Task<Result<Conges>> DemaderConger(CreateCongesDto createConges, string EmployerId)
         {
 
             Conges conges = new Conges()
@@ -57,15 +58,15 @@ namespace api.Repository
 
             await apiDbContext.Conges.AddAsync(conges);
             await apiDbContext.SaveChangesAsync();
-            return conges;
+            return Result<Conges>.Success(conges);
         }
 
-        public async Task<Conges> RefuserConges(int CongesId)
+        public async Task<Result<Conges>> RefuserConges(int CongesId)
         {
             Conges? conges = await apiDbContext.Conges.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.Id == CongesId);
             if (conges == null)
             {
-                return null;
+                return Result<Conges>.Failure("Conges notfound");
             }
             conges.Status = CongesStatus.Refuser;
             await apiDbContext.SaveChangesAsync();
@@ -76,7 +77,7 @@ namespace api.Repository
                 Subject = "Refus de Demande de Conges"
             };
             await mail.SendMailAsync(fluentEmail);
-            return conges;
+            return Result<Conges>.Success(conges);
 
         }
         public async Task<bool> EnConges(EnCongesDto enCongesDto)
@@ -100,10 +101,10 @@ namespace api.Repository
             return somme;
         }
 
-        public async Task<List<GetCongesDto>> GetConges()
+        public async Task<Result<List<GetCongesDto>>> GetConges()
         {
             List<GetCongesDto> getCongesDtos = await apiDbContext.Conges.Include(x => x.AppUser).Select(x => x.getCongesDtoFromModelToDto()).ToListAsync();
-            return getCongesDtos;
+            return Result<List<GetCongesDto>>.Success(getCongesDtos);
         }
     }
 }

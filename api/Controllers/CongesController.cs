@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Conges;
 using api.extensions;
+using api.generique;
 using api.interfaces;
 using api.Model;
 using api.Repository;
@@ -33,12 +34,18 @@ namespace api.Controllers
         [HttpGet("Approuver/{id:int}")]
         public async Task<IActionResult> Approuver([FromRoute] int id)
         {
-            return Ok(await congesRepository.ApprouverConges(id));
+            Result<Conges> result = await congesRepository.ApprouverConges(id);
+            if (result.IsSuccess)
+                return Ok(result.Value);
+            return NotFound(result.Error);
         }
         [HttpGet("Refuser/{id:int}")]
         public async Task<IActionResult> Refuser([FromRoute] int id)
         {
-            return Ok(await congesRepository.RefuserConges(id));
+            Result<Conges> result = await congesRepository.RefuserConges(id);
+            if (result.IsSuccess)
+                return Ok(result.Value);
+            return NotFound(result.Error);
         }
         [HttpPost]
         [Authorize]
@@ -51,15 +58,24 @@ namespace api.Controllers
                 return BadRequest("user notfound");
             }
             string userId = user.Id;
-            Conges conges = await congesRepository.DemaderConger(createCongesDto, userId);
-            if (conges == null)
-            { return BadRequest("something went wrong"); }
-            return Ok(conges);
+            Result<Conges> conges = await congesRepository.DemaderConger(createCongesDto, userId);
+            if (conges.IsSuccess)
+            {
+                return Ok(conges.Value);
+            }
+            else
+            {
+                return BadRequest(conges.Error);
+            }
+
         }
         [HttpGet]
         public async Task<IActionResult> GetConges()
         {
-            return Ok(await congesRepository.GetConges());
+            Result<List<GetCongesDto>> result = await congesRepository.GetConges();
+            if (result.IsSuccess)
+                return Ok(result.Value);
+            return NotFound(result.Error);
         }
 
     }
