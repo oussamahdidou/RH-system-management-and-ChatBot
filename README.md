@@ -6,6 +6,43 @@ This repository contains a complete RH (Resource Handling) management system, wh
 - **Angular 18** for the frontend.
 - **Flask-based Chatbot** for additional functionality.
 
+## Preview
+
+Here are some screenshots of the application:
+
+<div align="center">
+    <img src="readme/annoncecandidatures.png" alt="Annonce Candidatures" width="400" />
+    <img src="readme/candidaturepage.png" alt="Candidature Page" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/carreerspage.png" alt="Careers Page" width="400" />
+    <img src="readme/chatbot.png" alt="Chatbot" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/createannonce.png" alt="Create Annonce" width="400" />
+    <img src="readme/dashboard.png" alt="Dashboard" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/demandeconges.png" alt="Demande Conges" width="400" />
+    <img src="readme/demandecongesss.png" alt="Demande Conges 2" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/homepage.png" alt="Homepage" width="400" />
+    <img src="readme/lesdemande.png" alt="Les Demandes" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/postulepage.png" alt="Postule Page" width="400" />
+    <img src="readme/profilepage.png" alt="Profile Page" width="400" />
+</div>
+
+<div align="center">
+    <img src="readme/swaggerui.png" alt="Swagger UI" width="400" />
+</div>
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
@@ -32,7 +69,7 @@ First, clone the repository from GitHub:
 
 ```bash
 git clone https://github.com/oussamahdidou/RH-system-management-and-ChatBot.git
-cd rh-management-system
+cd RH-system-management-and-ChatBot
 ```
 
 ## Backend Setup (ASP.NET Core 8)
@@ -130,12 +167,3 @@ To run the entire application, you need to have all three components (backend, f
 4. In the third terminal, start the chatbot by running `flask run` in the `chatbot` directory.
 
 Now, you should be able to access the full application by navigating to `http://localhost:4200` in your web browser.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-```
-
-This Markdown code will generate the README with the specified instructions and formatting. Adjust the repository URL and other specifics as necessary for your actual project.
-```
