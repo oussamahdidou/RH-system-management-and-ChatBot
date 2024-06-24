@@ -1,6 +1,3 @@
-
-
-
 # RH Management System
 
 This repository contains a complete RH (Resource Handling) management system, which includes:
@@ -42,33 +39,33 @@ cd rh-management-system
 
 1. Navigate to the `backend` directory:
 
-    ```bash
-    cd api
-    ```
+   ```bash
+   cd api
+   ```
 
 2. Restore the .NET dependencies:
 
-    ```bash
-    dotnet restore
-    ```
+   ```bash
+   dotnet restore
+   ```
 
 3. Build the project:
 
-    ```bash
-    dotnet build
-    ```
+   ```bash
+   dotnet build
+   ```
 
 4. Update the database (if applicable):
 
-    ```bash
-    dotnet ef database update
-    ```
+   ```bash
+   dotnet ef database update
+   ```
 
 5. Run the backend server:
 
-    ```bash
-    dotnet run
-    ```
+   ```bash
+   dotnet run
+   ```
 
 The backend should now be running on `https://localhost:5111`.
 
@@ -76,21 +73,21 @@ The backend should now be running on `https://localhost:5111`.
 
 1. Navigate to the `frontend` directory:
 
-    ```bash
-    cd ../client
-    ```
+   ```bash
+   cd ../client
+   ```
 
 2. Install the Angular dependencies:
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 3. Run the frontend server:
 
-    ```bash
-    ng serve
-    ```
+   ```bash
+   ng serve
+   ```
 
 The frontend should now be running on `http://localhost:4200`.
 
@@ -98,28 +95,28 @@ The frontend should now be running on `http://localhost:4200`.
 
 1. Navigate to the `chatbot` directory:
 
-    ```bash
-    cd ../chatbot
-    ```
+   ```bash
+   cd ../chatbot
+   ```
 
 2. Create and activate a virtual environment:
 
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
+   ```bash
+   python -m venv venv
+   source venv\Scripts\activate`
+   ```
 
 3. Install the Python dependencies:
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 4. Run the Flask server:
 
-    ```bash
-    flask run
-    ```
+   ```bash
+   flask run
+   ```
 
 The chatbot should now be running on `http://localhost:5002`.
 
@@ -137,6 +134,8 @@ Now, you should be able to access the full application by navigating to `http://
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
 ```
 
 This Markdown code will generate the README with the specified instructions and formatting. Adjust the repository URL and other specifics as necessary for your actual project.
+```
