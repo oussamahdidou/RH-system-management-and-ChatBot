@@ -98,7 +98,18 @@ cd RH-system-management-and-ChatBot
    dotnet ef database update
    ```
 
-5. Run the backend server:
+5. Update appsetting.json content email and app-password:
+
+   ```bash
+   "SmtpSettings": {
+    "Host": "smtp.gmail.com",
+    "Port": 587,
+    "User": "your mail",
+    "Pass": "your apppassword"
+   }
+   ```
+
+6. Run the backend server:
 
    ```bash
    dotnet run
