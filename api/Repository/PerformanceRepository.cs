@@ -8,6 +8,7 @@ using api.Dtos.Conges;
 using api.Dtos.Heuresupplimentaire;
 using api.Dtos.Stats;
 using api.extensions;
+using api.generique;
 using api.helpers;
 using api.interfaces;
 using api.Model;
@@ -25,13 +26,12 @@ namespace api.Repository
             this.apiDbContext = apiDbContext;
             this.congesRepository = congesRepository;
         }
-        public async Task<Abscence> AddAbscence(CreateAbscenceDto createAbscenceDto)
+        public async Task<Result<Abscence>> AddAbscence(CreateAbscenceDto createAbscenceDto)
         {
 
             if (await congesRepository.EnConges(new EnCongesDto() { EmployerId = createAbscenceDto.EmployerId }))
             {
-                return null;
-
+                return Result<Abscence>.Failure("L`employer est en conges tu peut pas declarer une abscence");
             }
             Abscence abscence = new Abscence()
             {
@@ -40,11 +40,11 @@ namespace api.Repository
             };
             await apiDbContext.Abscences.AddAsync(abscence);
             await apiDbContext.SaveChangesAsync();
-            return abscence;
+            return Result<Abscence>.Success(abscence);
 
         }
 
-        public async Task<Heuresupplimentaires> AddHeuressupplimentaires(CreateHeuresupplimentaire createHeuresupplimentaire)
+        public async Task<Result<Heuresupplimentaires>> AddHeuressupplimentaires(CreateHeuresupplimentaire createHeuresupplimentaire)
         {
             Heuresupplimentaires heuresupplimentaires = new Heuresupplimentaires()
             {
@@ -53,10 +53,10 @@ namespace api.Repository
             };
             await apiDbContext.Heuresupplimentaires.AddAsync(heuresupplimentaires);
             await apiDbContext.SaveChangesAsync();
-            return heuresupplimentaires;
+            return Result<Heuresupplimentaires>.Success(heuresupplimentaires);
         }
 
-        public async Task<List<AbscencesChartsDto>> GetAbscencesCharts()
+        public async Task<Result<List<AbscencesChartsDto>>> GetAbscencesCharts()
         {
             List<(int year, int month)> months = DateTimeExtensions.GetLastFiveMonths();
             List<AbscencesChartsDto> abscencesChartsDtos = new List<AbscencesChartsDto>();
@@ -74,10 +74,10 @@ namespace api.Repository
             }
 
 
-            return abscencesChartsDtos;
+            return Result<List<AbscencesChartsDto>>.Success(abscencesChartsDtos);
         }
 
-        public async Task<List<AbscencesChartsDto>> GetAbscencesChartsByUser(string EmployerId)
+        public async Task<Result<List<AbscencesChartsDto>>> GetAbscencesChartsByUser(string EmployerId)
         {
             List<(int year, int month)> months = DateTimeExtensions.GetLastFiveMonths();
             List<AbscencesChartsDto> abscencesChartsDtos = new List<AbscencesChartsDto>();
@@ -95,15 +95,15 @@ namespace api.Repository
             }
 
 
-            return abscencesChartsDtos;
+            return Result<List<AbscencesChartsDto>>.Success(abscencesChartsDtos);
         }
 
-        public async Task<List<GetAbscencesDto>> GetAllAbscences()
+        public async Task<Result<List<GetAbscencesDto>>> GetAllAbscences()
         {
-            return await apiDbContext.Abscences.Where(x => x.Status == Abscencestatues.Justifier || (x.Status == Abscencestatues.NonJustifier && x.Date.AddHours(48) > DateTime.Now)).Include(x => x.AppUser).OrderByDescending(x => x.Date).Select(x => x.GetAbscencesfromModelToDto()).ToListAsync();
+            return Result<List<GetAbscencesDto>>.Success(await apiDbContext.Abscences.Where(x => x.Status == Abscencestatues.Justifier || (x.Status == Abscencestatues.NonJustifier && x.Date.AddHours(48) > DateTime.Now)).Include(x => x.AppUser).OrderByDescending(x => x.Date).Select(x => x.GetAbscencesfromModelToDto()).ToListAsync());
         }
 
-        public async Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesCharts()
+        public async Task<Result<List<HeuresSupplimentairesChartsDto>>> GetHeuresSupplimentairesCharts()
         {
             List<(int year, int month)> months = DateTimeExtensions.GetLastFiveMonths();
             List<HeuresSupplimentairesChartsDto> heuresupplimentairesChartsDtos = new List<HeuresSupplimentairesChartsDto>();
@@ -121,10 +121,10 @@ namespace api.Repository
             }
 
 
-            return heuresupplimentairesChartsDtos;
+            return Result<List<HeuresSupplimentairesChartsDto>>.Success(heuresupplimentairesChartsDtos);
         }
 
-        public async Task<List<HeuresSupplimentairesChartsDto>> GetHeuresSupplimentairesChartsByUser(string EmployerId)
+        public async Task<Result<List<HeuresSupplimentairesChartsDto>>> GetHeuresSupplimentairesChartsByUser(string EmployerId)
         {
             List<(int year, int month)> months = DateTimeExtensions.GetLastFiveMonths();
             List<HeuresSupplimentairesChartsDto> heuresSupplimentairesChartsDtos = new List<HeuresSupplimentairesChartsDto>();
@@ -142,23 +142,23 @@ namespace api.Repository
             }
 
 
-            return heuresSupplimentairesChartsDtos;
+            return Result<List<HeuresSupplimentairesChartsDto>>.Success(heuresSupplimentairesChartsDtos);
         }
 
-        public async Task<StatsDto> GetStats()
+        public async Task<Result<StatsDto>> GetStats()
         {
             List<Abscence> abscences = await apiDbContext.Abscences.Where(x => x.Date.Month == DateTime.Now.Month).ToListAsync();
             List<Conges> conges = await apiDbContext.Conges.Where(x => x.DateDebut <= DateTime.Now && x.Datefin >= DateTime.Now && x.Status == CongesStatus.Approuver).ToListAsync();
             List<Heuresupplimentaires> heuresupplimentaires = await apiDbContext.Heuresupplimentaires.Where(x => x.DateTime.Month == DateTime.Now.Month).ToListAsync();
-            return new StatsDto()
+            return Result<StatsDto>.Success(new StatsDto()
             {
                 Abscences = abscences.Count(),
                 Conges = conges.Count(),
                 Surtemps = heuresupplimentaires.Count()
-            };
+            });
         }
 
-        public async Task<Abscence> JustifyAbscence(int AbscenceId)
+        public async Task<Result<Abscence>> JustifyAbscence(int AbscenceId)
         {
             Abscence? abscence = await apiDbContext.Abscences.FirstOrDefaultAsync(x => x.Id == AbscenceId);
             if (abscence == null)
@@ -167,7 +167,7 @@ namespace api.Repository
             }
             abscence.Status = Abscencestatues.Justifier;
             await apiDbContext.SaveChangesAsync();
-            return abscence;
+            return Result<Abscence>.Success(abscence);
         }
 
 
