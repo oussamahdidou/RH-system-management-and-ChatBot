@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using api.Data;
 using api.Dtos.Recrutement;
 using api.extensions;
+using api.generique;
 using api.helpers;
 using api.interfaces;
 using api.Model;
@@ -24,7 +25,7 @@ namespace api.Repository
             this.webHostEnvironment = webHostEnvironment;
             this.fluentEmail = fluentEmail;
         }
-        public async Task<Annonce> CreateAnnonceAsync(CreateAnnonceDto createAnnonceDto)
+        public async Task<Result<Annonce>> CreateAnnonceAsync(CreateAnnonceDto createAnnonceDto)
         {
             Annonce annonce = new Annonce()
             {
@@ -36,52 +37,62 @@ namespace api.Repository
 
             await apiDbContext.Annonces.AddAsync(annonce);
             await apiDbContext.SaveChangesAsync();
-            return annonce;
+            return Result<Annonce>.Success(annonce);
         }
 
-        public async Task<Annonce> GetAnnonceByIdAsync(int Id)
+        public async Task<Result<Annonce>> GetAnnonceByIdAsync(int Id)
         {
-            return await apiDbContext.Annonces.Include(x => x.Candidatures).FirstOrDefaultAsync(x => x.Id == Id);
+            Annonce? annonce = await apiDbContext.Annonces.Include(x => x.Candidatures).FirstOrDefaultAsync(x => x.Id == Id);
+            if (annonce == null)
+            {
+                return Result<Annonce>.Failure("Annonce Not Found");
+            }
+            return Result<Annonce>.Success(annonce);
         }
 
-        public async Task<List<Annonce>> GetAnnoncesAsync()
+        public async Task<Result<List<Annonce>>> GetAnnoncesAsync()
         {
-            return await apiDbContext.Annonces.ToListAsync();
+            return Result<List<Annonce>>.Success(await apiDbContext.Annonces.ToListAsync());
         }
 
-        public async Task<Candidature> GetCandidatureById(int Id)
-        {
-            return await apiDbContext.Candidatures.FirstOrDefaultAsync(x => x.Id == Id);
-        }
-
-        public async Task<List<Candidature>> GetCandidaturesAsync(int Id)
-        {
-            List<Candidature> candidatures = await apiDbContext.Candidatures.Where(x => x.AnnonceId == Id).ToListAsync();
-            return candidatures;
-        }
-
-        public async Task<List<Annonce>> GetDisponibleAnnonces()
-        {
-            return await apiDbContext.Annonces.Include(x => x.Candidatures).Where(x => x.Candidatures.Count() < x.NmbrMax && x.Deadline > DateTime.Now).ToListAsync();
-        }
-
-        public async Task<Candidature> Integrer(int Id)
+        public async Task<Result<Candidature>> GetCandidatureById(int Id)
         {
             Candidature? candidature = await apiDbContext.Candidatures.FirstOrDefaultAsync(x => x.Id == Id);
             if (candidature == null)
-                return null;
+            {
+                return Result<Candidature>.Failure("Candidature notfound");
+            }
+            return Result<Candidature>.Success(candidature);
+        }
+
+        public async Task<Result<List<Candidature>>> GetCandidaturesAsync(int Id)
+        {
+            List<Candidature> candidatures = await apiDbContext.Candidatures.Where(x => x.AnnonceId == Id).ToListAsync();
+            return Result<List<Candidature>>.Success(candidatures);
+        }
+
+        public async Task<Result<List<Annonce>>> GetDisponibleAnnonces()
+        {
+            return Result<List<Annonce>>.Success(await apiDbContext.Annonces.Include(x => x.Candidatures).Where(x => x.Candidatures.Count() < x.NmbrMax && x.Deadline > DateTime.Now).ToListAsync());
+        }
+
+        public async Task<Result<Candidature>> Integrer(int Id)
+        {
+            Candidature? candidature = await apiDbContext.Candidatures.FirstOrDefaultAsync(x => x.Id == Id);
+            if (candidature == null)
+                return Result<Candidature>.Failure("Candidature NotFound");
             else
             {
 
                 candidature.Status = CandidatureStatus.Integrer;
 
                 await apiDbContext.SaveChangesAsync();
-                return candidature;
+                return Result<Candidature>.Success(candidature);
 
             }
         }
 
-        public async Task<Candidature> Postuler(CreateCandidatureDto createCandidatureDto, int AnnonceId)
+        public async Task<Result<Candidature>> Postuler(CreateCandidatureDto createCandidatureDto, int AnnonceId)
         {
             Annonce? annonce = await apiDbContext.Annonces.Include(x => x.Candidatures).FirstOrDefaultAsync(x => x.Id == AnnonceId);
 
@@ -111,20 +122,20 @@ namespace api.Repository
                         };
                         await apiDbContext.Candidatures.AddAsync(candidature);
                         await apiDbContext.SaveChangesAsync();
-                        return candidature;
+                        return Result<Candidature>.Success(candidature);
                     }
                     Console.WriteLine("file probleme");
-                    return null;
+                    return Result<Candidature>.Failure("error in file upload");
                 }
-                Console.WriteLine("mail probleme");
-                return null;
+                return Result<Candidature>.Failure("error in mailing");
             }
             Console.WriteLine("Annoncenotfound");
-            return null;
+            return Result<Candidature>.Failure("annonce notfound");
+
 
         }
 
-        public async Task<CandidatureUrgent> Refuser(int Id)
+        public async Task<Result<CandidatureUrgent>> Refuser(int Id)
         {
             Candidature? candidature = await apiDbContext.Candidatures.FirstOrDefaultAsync(x => x.Id == Id);
             if (candidature != null)
@@ -149,17 +160,19 @@ namespace api.Repository
                     await apiDbContext.CandidatureUrgents.AddAsync(candidatureUrgent);
                     candidature.Status = CandidatureStatus.Refuser;
                     await apiDbContext.SaveChangesAsync();
-                    return candidatureUrgent;
+                    return Result<CandidatureUrgent>.Success(candidatureUrgent);
                 }
+                return Result<CandidatureUrgent>.Failure("error in mailing");
             }
-            return null;
+            return Result<CandidatureUrgent>.Failure("candidature notfound");
+
         }
 
-        public async Task<Candidature> Selectionner(int Id, DateTime dateTime)
+        public async Task<Result<Candidature>> Selectionner(int Id, DateTime dateTime)
         {
             Candidature? candidature = await apiDbContext.Candidatures.FirstOrDefaultAsync(x => x.Id == Id);
             if (candidature == null)
-                return null;
+                return Result<Candidature>.Failure("candidature notfound");
             else
             {
                 Mail mail = new Mail()
@@ -173,9 +186,9 @@ namespace api.Repository
                     candidature.Status = CandidatureStatus.Selectionner;
 
                     await apiDbContext.SaveChangesAsync();
-                    return candidature;
+                    return Result<Candidature>.Success(candidature);
                 }
-                return null;
+                return Result<Candidature>.Failure("error in mailing");
             }
         }
     }

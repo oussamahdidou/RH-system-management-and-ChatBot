@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Recrutement;
+using api.generique;
 using api.Model;
 
 namespace api.interfaces
 {
     public interface IRecrutementRepository
     {
-        Task<Annonce> CreateAnnonceAsync(CreateAnnonceDto createAnnonceDto);
-        Task<List<Annonce>> GetAnnoncesAsync();
-        Task<Annonce> GetAnnonceByIdAsync(int Id);
-        Task<Candidature> Postuler(CreateCandidatureDto createCandidatureDto, int AnnonceId);
-        Task<List<Candidature>> GetCandidaturesAsync(int Id);
-        Task<Candidature> GetCandidatureById(int Id);
-        Task<Candidature> Selectionner(int Id, DateTime dateTime);
-        Task<CandidatureUrgent> Refuser(int Id);
-        Task<Candidature> Integrer(int Id);
-        Task<List<Annonce>> GetDisponibleAnnonces();
+        Task<Result<Annonce>> CreateAnnonceAsync(CreateAnnonceDto createAnnonceDto);
+        Task<Result<List<Annonce>>> GetAnnoncesAsync();
+        Task<Result<Annonce>> GetAnnonceByIdAsync(int Id);
+        Task<Result<Candidature>> Postuler(CreateCandidatureDto createCandidatureDto, int AnnonceId);
+        Task<Result<List<Candidature>>> GetCandidaturesAsync(int Id);
+        Task<Result<Candidature>> GetCandidatureById(int Id);
+        Task<Result<Candidature>> Selectionner(int Id, DateTime dateTime);
+        Task<Result<CandidatureUrgent>> Refuser(int Id);
+        Task<Result<Candidature>> Integrer(int Id);
+        Task<Result<List<Annonce>>> GetDisponibleAnnonces();
 
 
     }
